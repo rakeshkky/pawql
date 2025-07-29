@@ -1,0 +1,119 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff_locations_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+  fields:
+    - name: end_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.END_DATE
+    - name: location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.LOCATION_ID
+    - name: staff_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.STAFF_ID
+    - name: start_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.START_DATE
+  graphql:
+    typeName: learn_pql_public_staff_locations_set_input
+    inputTypeName: learn_pql_public_staff_locations_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF_LOCATIONS_set_input
+      fieldMapping:
+        end_date:
+          column:
+            name: END_DATE
+        location_id:
+          column:
+            name: LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        start_date:
+          column:
+            name: START_DATE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff_locations_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - end_date
+          - location_id
+          - staff_id
+          - start_date
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_staff_locations_result
+  description: update from LEARN_PQL.PUBLIC.STAFF_LOCATIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_staff_locations!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_staff_locations_result
+    inputTypeName: update_learn_pql_public_staff_locations_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.STAFF_LOCATIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_staff_locations_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_staff_locations
+  outputType: update_learn_pql_public_staff_locations_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_staff_locations_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_staff_locations_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+  graphql:
+    rootFieldName: update_learn_pql_public_staff_locations
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_staff_locations
+  permissions:
+    - role: admin
+      allowExecution: true
+

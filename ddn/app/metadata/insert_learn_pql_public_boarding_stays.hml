@@ -1,0 +1,172 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_boarding_stays_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.BOARDING_STAYS
+  fields:
+    - name: check_in_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.CHECK_IN_DATE
+    - name: check_out_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.CHECK_OUT_DATE
+    - name: daily_rate
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.DAILY_RATE
+    - name: dog_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.DOG_ID
+    - name: emergency_contact
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.EMERGENCY_CONTACT
+    - name: kennel_number
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.KENNEL_NUMBER
+    - name: location_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.LOCATION_ID
+    - name: pickup_authorized_persons
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.PICKUP_AUTHORIZED_PERSONS
+    - name: special_instructions
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.SPECIAL_INSTRUCTIONS
+    - name: stay_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.STAY_ID
+    - name: stay_status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.STAY_STATUS
+    - name: total_cost
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.BOARDING_STAYS.TOTAL_COST
+  graphql:
+    typeName: learn_pql_public_boarding_stays_insert_input
+    inputTypeName: learn_pql_public_boarding_stays_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.BOARDING_STAYS_insert_input
+      fieldMapping:
+        check_in_date:
+          column:
+            name: CHECK_IN_DATE
+        check_out_date:
+          column:
+            name: CHECK_OUT_DATE
+        daily_rate:
+          column:
+            name: DAILY_RATE
+        dog_id:
+          column:
+            name: DOG_ID
+        emergency_contact:
+          column:
+            name: EMERGENCY_CONTACT
+        kennel_number:
+          column:
+            name: KENNEL_NUMBER
+        location_id:
+          column:
+            name: LOCATION_ID
+        pickup_authorized_persons:
+          column:
+            name: PICKUP_AUTHORIZED_PERSONS
+        special_instructions:
+          column:
+            name: SPECIAL_INSTRUCTIONS
+        stay_id:
+          column:
+            name: STAY_ID
+        stay_status:
+          column:
+            name: STAY_STATUS
+        total_cost:
+          column:
+            name: TOTAL_COST
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_boarding_stays_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - check_in_date
+          - check_out_date
+          - daily_rate
+          - dog_id
+          - emergency_contact
+          - kennel_number
+          - location_id
+          - pickup_authorized_persons
+          - special_instructions
+          - stay_id
+          - stay_status
+          - total_cost
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_boarding_stays_result
+  description: insert from LEARN_PQL.PUBLIC.BOARDING_STAYS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_boarding_stays!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_boarding_stays_result
+    inputTypeName: insert_learn_pql_public_boarding_stays_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.BOARDING_STAYS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_boarding_stays_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_boarding_stays
+  outputType: insert_learn_pql_public_boarding_stays_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_boarding_stays_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.BOARDING_STAYS
+  graphql:
+    rootFieldName: insert_learn_pql_public_boarding_stays
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.BOARDING_STAYS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_boarding_stays
+  permissions:
+    - role: admin
+      allowExecution: true
+

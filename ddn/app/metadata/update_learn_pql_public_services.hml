@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_services_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.SERVICES
+  fields:
+    - name: active_status
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.ACTIVE_STATUS
+    - name: base_price
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.BASE_PRICE
+    - name: description
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.DESCRIPTION
+    - name: duration_minutes
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.DURATION_MINUTES
+    - name: requires_vaccination
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.REQUIRES_VACCINATION
+    - name: service_category
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.SERVICE_CATEGORY
+    - name: service_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.SERVICE_ID
+    - name: service_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.SERVICES.SERVICE_NAME
+  graphql:
+    typeName: learn_pql_public_services_set_input
+    inputTypeName: learn_pql_public_services_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.SERVICES_set_input
+      fieldMapping:
+        active_status:
+          column:
+            name: ACTIVE_STATUS
+        base_price:
+          column:
+            name: BASE_PRICE
+        description:
+          column:
+            name: DESCRIPTION
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        requires_vaccination:
+          column:
+            name: REQUIRES_VACCINATION
+        service_category:
+          column:
+            name: SERVICE_CATEGORY
+        service_id:
+          column:
+            name: SERVICE_ID
+        service_name:
+          column:
+            name: SERVICE_NAME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_services_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - active_status
+          - base_price
+          - description
+          - duration_minutes
+          - requires_vaccination
+          - service_category
+          - service_id
+          - service_name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_services_result
+  description: update from LEARN_PQL.PUBLIC.SERVICES result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_services!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_services_result
+    inputTypeName: update_learn_pql_public_services_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.SERVICES_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_services_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_services
+  outputType: update_learn_pql_public_services_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_services_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_services_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.SERVICES
+  graphql:
+    rootFieldName: update_learn_pql_public_services
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.SERVICES
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_services
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,130 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_old_kennel_data_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+  fields:
+    - name: amt_paid
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.AMT_PAID
+    - name: dog_name
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.DOG_NAME
+    - name: misc_notes
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.MISC_NOTES
+    - name: owner_info
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.OWNER_INFO
+    - name: rec_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.REC_ID
+    - name: stay_dates
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.STAY_DATES
+  graphql:
+    typeName: learn_pql_public_old_kennel_data_insert_input
+    inputTypeName: learn_pql_public_old_kennel_data_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.OLD_KENNEL_DATA_insert_input
+      fieldMapping:
+        amt_paid:
+          column:
+            name: AMT_PAID
+        dog_name:
+          column:
+            name: DOG_NAME
+        misc_notes:
+          column:
+            name: MISC_NOTES
+        owner_info:
+          column:
+            name: OWNER_INFO
+        rec_id:
+          column:
+            name: REC_ID
+        stay_dates:
+          column:
+            name: STAY_DATES
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_old_kennel_data_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amt_paid
+          - dog_name
+          - misc_notes
+          - owner_info
+          - rec_id
+          - stay_dates
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_old_kennel_data_result
+  description: insert from LEARN_PQL.PUBLIC.OLD_KENNEL_DATA result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_old_kennel_data!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_old_kennel_data_result
+    inputTypeName: insert_learn_pql_public_old_kennel_data_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.OLD_KENNEL_DATA_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_old_kennel_data_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_old_kennel_data
+  outputType: insert_learn_pql_public_old_kennel_data_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_old_kennel_data_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+  graphql:
+    rootFieldName: insert_learn_pql_public_old_kennel_data
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_old_kennel_data
+  permissions:
+    - role: admin
+      allowExecution: true
+

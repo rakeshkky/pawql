@@ -1,0 +1,15 @@
+services:
+  app_mydb:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile.mydb
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_MYDB_HASURA_SERVICE_TOKEN_SECRET
+      JDBC_SCHEMAS: $APP_MYDB_JDBC_SCHEMAS
+      JDBC_URL: $APP_MYDB_JDBC_URL
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_MYDB_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_MYDB_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 6762:8080

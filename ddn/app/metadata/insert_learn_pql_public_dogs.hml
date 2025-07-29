@@ -1,0 +1,200 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_dogs_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.DOGS
+  fields:
+    - name: birth_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.DOGS.BIRTH_DATE
+    - name: breed
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.BREED
+    - name: color
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.COLOR
+    - name: dog_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.DOGS.DOG_ID
+    - name: dog_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.DOGS.DOG_NAME
+    - name: gender
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.GENDER
+    - name: l_1
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.DOGS.L_1
+    - name: l_2
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.DOGS.L_2
+    - name: l_3
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.DOGS.L_3
+    - name: microchip_id
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.MICROCHIP_ID
+    - name: owner_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.DOGS.OWNER_ID
+    - name: registration_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.DOGS.REGISTRATION_DATE
+    - name: size_category
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.SIZE_CATEGORY
+    - name: special_needs
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.SPECIAL_NEEDS
+    - name: status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.DOGS.STATUS
+    - name: weight_lbs
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.DOGS.WEIGHT_LBS
+  graphql:
+    typeName: learn_pql_public_dogs_insert_input
+    inputTypeName: learn_pql_public_dogs_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.DOGS_insert_input
+      fieldMapping:
+        birth_date:
+          column:
+            name: BIRTH_DATE
+        breed:
+          column:
+            name: BREED
+        color:
+          column:
+            name: COLOR
+        dog_id:
+          column:
+            name: DOG_ID
+        dog_name:
+          column:
+            name: DOG_NAME
+        gender:
+          column:
+            name: GENDER
+        l_1:
+          column:
+            name: L_1
+        l_2:
+          column:
+            name: L_2
+        l_3:
+          column:
+            name: L_3
+        microchip_id:
+          column:
+            name: MICROCHIP_ID
+        owner_id:
+          column:
+            name: OWNER_ID
+        registration_date:
+          column:
+            name: REGISTRATION_DATE
+        size_category:
+          column:
+            name: SIZE_CATEGORY
+        special_needs:
+          column:
+            name: SPECIAL_NEEDS
+        status:
+          column:
+            name: STATUS
+        weight_lbs:
+          column:
+            name: WEIGHT_LBS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_dogs_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - birth_date
+          - breed
+          - color
+          - dog_id
+          - dog_name
+          - gender
+          - l_1
+          - l_2
+          - l_3
+          - microchip_id
+          - owner_id
+          - registration_date
+          - size_category
+          - special_needs
+          - status
+          - weight_lbs
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_dogs_result
+  description: insert from LEARN_PQL.PUBLIC.DOGS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_dogs!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_dogs_result
+    inputTypeName: insert_learn_pql_public_dogs_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.DOGS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_dogs_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_dogs
+  outputType: insert_learn_pql_public_dogs_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_dogs_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.DOGS
+  graphql:
+    rootFieldName: insert_learn_pql_public_dogs
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.DOGS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_dogs
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,186 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_locations_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.LOCATIONS
+  fields:
+    - name: address
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.ADDRESS
+    - name: boarding_kennels
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.BOARDING_KENNELS
+    - name: city
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.CITY
+    - name: grooming_stations
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.GROOMING_STATIONS
+    - name: location_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.LOCATION_ID
+    - name: location_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.LOCATION_NAME
+    - name: manager_name
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.MANAGER_NAME
+    - name: opened_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.OPENED_DATE
+    - name: park_capacity
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.PARK_CAPACITY
+    - name: phone
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.PHONE
+    - name: square_footage
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.SQUARE_FOOTAGE
+    - name: state
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.STATE
+    - name: status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.STATUS
+    - name: zip_code
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.LOCATIONS.ZIP_CODE
+  graphql:
+    typeName: learn_pql_public_locations_insert_input
+    inputTypeName: learn_pql_public_locations_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.LOCATIONS_insert_input
+      fieldMapping:
+        address:
+          column:
+            name: ADDRESS
+        boarding_kennels:
+          column:
+            name: BOARDING_KENNELS
+        city:
+          column:
+            name: CITY
+        grooming_stations:
+          column:
+            name: GROOMING_STATIONS
+        location_id:
+          column:
+            name: LOCATION_ID
+        location_name:
+          column:
+            name: LOCATION_NAME
+        manager_name:
+          column:
+            name: MANAGER_NAME
+        opened_date:
+          column:
+            name: OPENED_DATE
+        park_capacity:
+          column:
+            name: PARK_CAPACITY
+        phone:
+          column:
+            name: PHONE
+        square_footage:
+          column:
+            name: SQUARE_FOOTAGE
+        state:
+          column:
+            name: STATE
+        status:
+          column:
+            name: STATUS
+        zip_code:
+          column:
+            name: ZIP_CODE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_locations_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - boarding_kennels
+          - city
+          - grooming_stations
+          - location_id
+          - location_name
+          - manager_name
+          - opened_date
+          - park_capacity
+          - phone
+          - square_footage
+          - state
+          - status
+          - zip_code
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_locations_result
+  description: insert from LEARN_PQL.PUBLIC.LOCATIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_locations!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_locations_result
+    inputTypeName: insert_learn_pql_public_locations_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.LOCATIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_locations_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_locations
+  outputType: insert_learn_pql_public_locations_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_locations_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.LOCATIONS
+  graphql:
+    rootFieldName: insert_learn_pql_public_locations
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.LOCATIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_locations
+  permissions:
+    - role: admin
+      allowExecution: true
+

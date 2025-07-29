@@ -1,0 +1,277 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_locations
+  description: "Object type for LEARN_PQL.PUBLIC.LOCATIONS. Description: null"
+  fields:
+    - name: address
+      type: string
+    - name: boarding_kennels
+      type: biginteger
+    - name: city
+      type: string
+    - name: grooming_stations
+      type: biginteger
+    - name: location_id
+      type: biginteger!
+    - name: location_name
+      type: string!
+    - name: manager_name
+      type: string
+    - name: opened_date
+      type: date
+    - name: park_capacity
+      type: biginteger
+    - name: phone
+      type: string
+    - name: square_footage
+      type: biginteger
+    - name: state
+      type: string
+    - name: status
+      type: string
+    - name: zip_code
+      type: string
+  graphql:
+    typeName: learn_pql_public_locations
+    inputTypeName: learn_pql_public_locations_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.LOCATIONS
+      fieldMapping:
+        address:
+          column:
+            name: ADDRESS
+        boarding_kennels:
+          column:
+            name: BOARDING_KENNELS
+        city:
+          column:
+            name: CITY
+        grooming_stations:
+          column:
+            name: GROOMING_STATIONS
+        location_id:
+          column:
+            name: LOCATION_ID
+        location_name:
+          column:
+            name: LOCATION_NAME
+        manager_name:
+          column:
+            name: MANAGER_NAME
+        opened_date:
+          column:
+            name: OPENED_DATE
+        park_capacity:
+          column:
+            name: PARK_CAPACITY
+        phone:
+          column:
+            name: PHONE
+        square_footage:
+          column:
+            name: SQUARE_FOOTAGE
+        state:
+          column:
+            name: STATE
+        status:
+          column:
+            name: STATUS
+        zip_code:
+          column:
+            name: ZIP_CODE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_locations
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - boarding_kennels
+          - city
+          - grooming_stations
+          - location_id
+          - location_name
+          - manager_name
+          - opened_date
+          - park_capacity
+          - phone
+          - square_footage
+          - state
+          - status
+          - zip_code
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_locations_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_locations
+      comparableFields:
+        - fieldName: address
+          booleanExpressionType: text_bool_exp
+        - fieldName: boarding_kennels
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: city
+          booleanExpressionType: text_bool_exp
+        - fieldName: grooming_stations
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: location_name
+          booleanExpressionType: text_bool_exp
+        - fieldName: manager_name
+          booleanExpressionType: text_bool_exp
+        - fieldName: opened_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: park_capacity
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: phone
+          booleanExpressionType: text_bool_exp
+        - fieldName: square_footage
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: state
+          booleanExpressionType: text_bool_exp
+        - fieldName: status
+          booleanExpressionType: text_bool_exp
+        - fieldName: zip_code
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_locations_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_locations_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_locations
+      aggregatableFields:
+        - fieldName: address
+          aggregateExpression: text_agg_exp
+        - fieldName: boarding_kennels
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: city
+          aggregateExpression: text_agg_exp
+        - fieldName: grooming_stations
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: location_name
+          aggregateExpression: text_agg_exp
+        - fieldName: manager_name
+          aggregateExpression: text_agg_exp
+        - fieldName: opened_date
+          aggregateExpression: date_agg_exp
+        - fieldName: park_capacity
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: phone
+          aggregateExpression: text_agg_exp
+        - fieldName: square_footage
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: state
+          aggregateExpression: text_agg_exp
+        - fieldName: status
+          aggregateExpression: text_agg_exp
+        - fieldName: zip_code
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_locations_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_locations_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_locations
+      orderableFields:
+        - fieldName: address
+          orderByExpression: string_order_by_exp
+        - fieldName: boarding_kennels
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: city
+          orderByExpression: string_order_by_exp
+        - fieldName: grooming_stations
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: location_name
+          orderByExpression: string_order_by_exp
+        - fieldName: manager_name
+          orderByExpression: string_order_by_exp
+        - fieldName: opened_date
+          orderByExpression: date_order_by_exp
+        - fieldName: park_capacity
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: phone
+          orderByExpression: string_order_by_exp
+        - fieldName: square_footage
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: state
+          orderByExpression: string_order_by_exp
+        - fieldName: status
+          orderByExpression: string_order_by_exp
+        - fieldName: zip_code
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_locations_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_locations
+  objectType: learn_pql_public_locations
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.LOCATIONS
+  filterExpressionType: learn_pql_public_locations_bool_exp
+  aggregateExpression: learn_pql_public_locations_agg_exp
+  orderByExpression: learn_pql_public_locations_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_locations
+      subscription:
+        rootField: learn_pql_public_locations
+    selectUniques:
+      - queryRootField: learn_pql_public_locations_by_location_id
+        uniqueIdentifier:
+          - location_id
+        subscription:
+          rootField: learn_pql_public_locations_by_location_id
+    filterInputTypeName: learn_pql_public_locations_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_locations_aggregate
+      subscription:
+        rootField: learn_pql_public_locations_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_locations
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

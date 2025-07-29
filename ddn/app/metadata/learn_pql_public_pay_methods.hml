@@ -1,0 +1,193 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_pay_methods
+  description: "Object type for LEARN_PQL.PUBLIC.PAY_METHODS. Description: null"
+  fields:
+    - name: card_type
+      type: string
+    - name: customer_id
+      type: biginteger
+    - name: exp_month
+      type: biginteger
+    - name: exp_year
+      type: biginteger
+    - name: is_default
+      type: boolean
+    - name: last_four_digits
+      type: string
+    - name: pm_id
+      type: biginteger!
+  graphql:
+    typeName: learn_pql_public_pay_methods
+    inputTypeName: learn_pql_public_pay_methods_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PAY_METHODS
+      fieldMapping:
+        card_type:
+          column:
+            name: CARD_TYPE
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        exp_month:
+          column:
+            name: EXP_MONTH
+        exp_year:
+          column:
+            name: EXP_YEAR
+        is_default:
+          column:
+            name: IS_DEFAULT
+        last_four_digits:
+          column:
+            name: LAST_FOUR_DIGITS
+        pm_id:
+          column:
+            name: PM_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_pay_methods
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - card_type
+          - customer_id
+          - exp_month
+          - exp_year
+          - is_default
+          - last_four_digits
+          - pm_id
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_pay_methods_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_pay_methods
+      comparableFields:
+        - fieldName: card_type
+          booleanExpressionType: text_bool_exp
+        - fieldName: customer_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: exp_month
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: exp_year
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: is_default
+          booleanExpressionType: boolean_bool_exp
+        - fieldName: last_four_digits
+          booleanExpressionType: text_bool_exp
+        - fieldName: pm_id
+          booleanExpressionType: biginteger_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_pay_methods_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_pay_methods_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_pay_methods
+      aggregatableFields:
+        - fieldName: card_type
+          aggregateExpression: text_agg_exp
+        - fieldName: customer_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: exp_month
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: exp_year
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: is_default
+          aggregateExpression: boolean_agg_exp
+        - fieldName: last_four_digits
+          aggregateExpression: text_agg_exp
+        - fieldName: pm_id
+          aggregateExpression: biginteger_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_pay_methods_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_pay_methods_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_pay_methods
+      orderableFields:
+        - fieldName: card_type
+          orderByExpression: string_order_by_exp
+        - fieldName: customer_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: exp_month
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: exp_year
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: is_default
+          orderByExpression: boolean_order_by_exp
+        - fieldName: last_four_digits
+          orderByExpression: string_order_by_exp
+        - fieldName: pm_id
+          orderByExpression: biginteger_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_pay_methods_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_pay_methods
+  objectType: learn_pql_public_pay_methods
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.PAY_METHODS
+  filterExpressionType: learn_pql_public_pay_methods_bool_exp
+  aggregateExpression: learn_pql_public_pay_methods_agg_exp
+  orderByExpression: learn_pql_public_pay_methods_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_pay_methods
+      subscription:
+        rootField: learn_pql_public_pay_methods
+    selectUniques:
+      - queryRootField: learn_pql_public_pay_methods_by_pm_id
+        uniqueIdentifier:
+          - pm_id
+        subscription:
+          rootField: learn_pql_public_pay_methods_by_pm_id
+    filterInputTypeName: learn_pql_public_pay_methods_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_pay_methods_aggregate
+      subscription:
+        rootField: learn_pql_public_pay_methods_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_pay_methods
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

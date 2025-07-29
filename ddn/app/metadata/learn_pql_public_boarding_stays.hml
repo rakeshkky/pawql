@@ -1,0 +1,253 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_boarding_stays
+  description: "Object type for LEARN_PQL.PUBLIC.BOARDING_STAYS. Description: null"
+  fields:
+    - name: check_in_date
+      type: date
+    - name: check_out_date
+      type: date
+    - name: daily_rate
+      type: bigdecimal
+    - name: dog_id
+      type: biginteger!
+    - name: emergency_contact
+      type: string
+    - name: kennel_number
+      type: string
+    - name: location_id
+      type: biginteger!
+    - name: pickup_authorized_persons
+      type: string
+    - name: special_instructions
+      type: string
+    - name: stay_id
+      type: biginteger!
+    - name: stay_status
+      type: string
+    - name: total_cost
+      type: bigdecimal
+  graphql:
+    typeName: learn_pql_public_boarding_stays
+    inputTypeName: learn_pql_public_boarding_stays_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.BOARDING_STAYS
+      fieldMapping:
+        check_in_date:
+          column:
+            name: CHECK_IN_DATE
+        check_out_date:
+          column:
+            name: CHECK_OUT_DATE
+        daily_rate:
+          column:
+            name: DAILY_RATE
+        dog_id:
+          column:
+            name: DOG_ID
+        emergency_contact:
+          column:
+            name: EMERGENCY_CONTACT
+        kennel_number:
+          column:
+            name: KENNEL_NUMBER
+        location_id:
+          column:
+            name: LOCATION_ID
+        pickup_authorized_persons:
+          column:
+            name: PICKUP_AUTHORIZED_PERSONS
+        special_instructions:
+          column:
+            name: SPECIAL_INSTRUCTIONS
+        stay_id:
+          column:
+            name: STAY_ID
+        stay_status:
+          column:
+            name: STAY_STATUS
+        total_cost:
+          column:
+            name: TOTAL_COST
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_boarding_stays
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - check_in_date
+          - check_out_date
+          - daily_rate
+          - dog_id
+          - emergency_contact
+          - kennel_number
+          - location_id
+          - pickup_authorized_persons
+          - special_instructions
+          - stay_id
+          - stay_status
+          - total_cost
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_boarding_stays_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_boarding_stays
+      comparableFields:
+        - fieldName: check_in_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: check_out_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: daily_rate
+          booleanExpressionType: bigdecimal_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: emergency_contact
+          booleanExpressionType: text_bool_exp
+        - fieldName: kennel_number
+          booleanExpressionType: text_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: pickup_authorized_persons
+          booleanExpressionType: text_bool_exp
+        - fieldName: special_instructions
+          booleanExpressionType: text_bool_exp
+        - fieldName: stay_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: stay_status
+          booleanExpressionType: text_bool_exp
+        - fieldName: total_cost
+          booleanExpressionType: bigdecimal_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_boarding_stays_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_boarding_stays_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_boarding_stays
+      aggregatableFields:
+        - fieldName: check_in_date
+          aggregateExpression: date_agg_exp
+        - fieldName: check_out_date
+          aggregateExpression: date_agg_exp
+        - fieldName: daily_rate
+          aggregateExpression: bigdecimal_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: emergency_contact
+          aggregateExpression: text_agg_exp
+        - fieldName: kennel_number
+          aggregateExpression: text_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: pickup_authorized_persons
+          aggregateExpression: text_agg_exp
+        - fieldName: special_instructions
+          aggregateExpression: text_agg_exp
+        - fieldName: stay_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: stay_status
+          aggregateExpression: text_agg_exp
+        - fieldName: total_cost
+          aggregateExpression: bigdecimal_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_boarding_stays_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_boarding_stays_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_boarding_stays
+      orderableFields:
+        - fieldName: check_in_date
+          orderByExpression: date_order_by_exp
+        - fieldName: check_out_date
+          orderByExpression: date_order_by_exp
+        - fieldName: daily_rate
+          orderByExpression: bigdecimal_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: emergency_contact
+          orderByExpression: string_order_by_exp
+        - fieldName: kennel_number
+          orderByExpression: string_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: pickup_authorized_persons
+          orderByExpression: string_order_by_exp
+        - fieldName: special_instructions
+          orderByExpression: string_order_by_exp
+        - fieldName: stay_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: stay_status
+          orderByExpression: string_order_by_exp
+        - fieldName: total_cost
+          orderByExpression: bigdecimal_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_boarding_stays_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_boarding_stays
+  objectType: learn_pql_public_boarding_stays
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.BOARDING_STAYS
+  filterExpressionType: learn_pql_public_boarding_stays_bool_exp
+  aggregateExpression: learn_pql_public_boarding_stays_agg_exp
+  orderByExpression: learn_pql_public_boarding_stays_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_boarding_stays
+      subscription:
+        rootField: learn_pql_public_boarding_stays
+    selectUniques:
+      - queryRootField: learn_pql_public_boarding_stays_by_stay_id
+        uniqueIdentifier:
+          - stay_id
+        subscription:
+          rootField: learn_pql_public_boarding_stays_by_stay_id
+    filterInputTypeName: learn_pql_public_boarding_stays_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_boarding_stays_aggregate
+      subscription:
+        rootField: learn_pql_public_boarding_stays_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_boarding_stays
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

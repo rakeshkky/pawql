@@ -1,0 +1,229 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff
+  description: "Object type for LEARN_PQL.PUBLIC.STAFF. Description: null"
+  fields:
+    - name: email
+      type: string
+    - name: first_name
+      type: string!
+    - name: hire_date
+      type: date
+    - name: hourly_rate
+      type: bigdecimal
+    - name: job_title
+      type: string
+    - name: last_name
+      type: string!
+    - name: phone
+      type: string
+    - name: primary_location_id
+      type: biginteger
+    - name: staff_id
+      type: biginteger!
+    - name: status
+      type: string
+  graphql:
+    typeName: learn_pql_public_staff
+    inputTypeName: learn_pql_public_staff_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF
+      fieldMapping:
+        email:
+          column:
+            name: EMAIL
+        first_name:
+          column:
+            name: FIRST_NAME
+        hire_date:
+          column:
+            name: HIRE_DATE
+        hourly_rate:
+          column:
+            name: HOURLY_RATE
+        job_title:
+          column:
+            name: JOB_TITLE
+        last_name:
+          column:
+            name: LAST_NAME
+        phone:
+          column:
+            name: PHONE
+        primary_location_id:
+          column:
+            name: PRIMARY_LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - email
+          - first_name
+          - hire_date
+          - hourly_rate
+          - job_title
+          - last_name
+          - phone
+          - primary_location_id
+          - staff_id
+          - status
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_staff_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_staff
+      comparableFields:
+        - fieldName: email
+          booleanExpressionType: text_bool_exp
+        - fieldName: first_name
+          booleanExpressionType: text_bool_exp
+        - fieldName: hire_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: hourly_rate
+          booleanExpressionType: bigdecimal_bool_exp
+        - fieldName: job_title
+          booleanExpressionType: text_bool_exp
+        - fieldName: last_name
+          booleanExpressionType: text_bool_exp
+        - fieldName: phone
+          booleanExpressionType: text_bool_exp
+        - fieldName: primary_location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: staff_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: status
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_staff_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_staff_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_staff
+      aggregatableFields:
+        - fieldName: email
+          aggregateExpression: text_agg_exp
+        - fieldName: first_name
+          aggregateExpression: text_agg_exp
+        - fieldName: hire_date
+          aggregateExpression: date_agg_exp
+        - fieldName: hourly_rate
+          aggregateExpression: bigdecimal_agg_exp
+        - fieldName: job_title
+          aggregateExpression: text_agg_exp
+        - fieldName: last_name
+          aggregateExpression: text_agg_exp
+        - fieldName: phone
+          aggregateExpression: text_agg_exp
+        - fieldName: primary_location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: staff_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: status
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_staff_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_staff_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_staff
+      orderableFields:
+        - fieldName: email
+          orderByExpression: string_order_by_exp
+        - fieldName: first_name
+          orderByExpression: string_order_by_exp
+        - fieldName: hire_date
+          orderByExpression: date_order_by_exp
+        - fieldName: hourly_rate
+          orderByExpression: bigdecimal_order_by_exp
+        - fieldName: job_title
+          orderByExpression: string_order_by_exp
+        - fieldName: last_name
+          orderByExpression: string_order_by_exp
+        - fieldName: phone
+          orderByExpression: string_order_by_exp
+        - fieldName: primary_location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: staff_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: status
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_staff_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_staff
+  objectType: learn_pql_public_staff
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.STAFF
+  filterExpressionType: learn_pql_public_staff_bool_exp
+  aggregateExpression: learn_pql_public_staff_agg_exp
+  orderByExpression: learn_pql_public_staff_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_staff
+      subscription:
+        rootField: learn_pql_public_staff
+    selectUniques:
+      - queryRootField: learn_pql_public_staff_by_staff_id
+        uniqueIdentifier:
+          - staff_id
+        subscription:
+          rootField: learn_pql_public_staff_by_staff_id
+    filterInputTypeName: learn_pql_public_staff_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_staff_aggregate
+      subscription:
+        rootField: learn_pql_public_staff_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_staff
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

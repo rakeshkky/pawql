@@ -1,0 +1,63 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: delete_learn_pql_public_dog_vaccinations_result
+  description: delete from LEARN_PQL.PUBLIC.DOG_VACCINATIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_dog_vaccinations!]!"
+      description: Objects that were affected by delete
+  graphql:
+    typeName: delete_learn_pql_public_dog_vaccinations_result
+    inputTypeName: delete_learn_pql_public_dog_vaccinations_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: delete_LEARN_PQL.PUBLIC.DOG_VACCINATIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: delete_learn_pql_public_dog_vaccinations_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: delete_learn_pql_public_dog_vaccinations
+  outputType: delete_learn_pql_public_dog_vaccinations_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: where
+      type: learn_pql_public_dog_vaccinations_bool_exp!
+      description: Filter for rows to delete
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: delete_LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+  graphql:
+    rootFieldName: delete_learn_pql_public_dog_vaccinations
+    rootFieldKind: Mutation
+  description: Delete from LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: delete_learn_pql_public_dog_vaccinations
+  permissions:
+    - role: admin
+      allowExecution: true
+

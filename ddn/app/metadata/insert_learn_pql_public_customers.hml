@@ -1,0 +1,186 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_customers_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.CUSTOMERS
+  fields:
+    - name: address
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.ADDRESS
+    - name: city
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.CITY
+    - name: customer_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.CUSTOMER_ID
+    - name: email
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.EMAIL
+    - name: emergency_contact_name
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.EMERGENCY_CONTACT_NAME
+    - name: emergency_contact_phone
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.EMERGENCY_CONTACT_PHONE
+    - name: first_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.FIRST_NAME
+    - name: last_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.LAST_NAME
+    - name: phone
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.PHONE
+    - name: preferred_location_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.PREFERRED_LOCATION_ID
+    - name: registration_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.REGISTRATION_DATE
+    - name: state
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.STATE
+    - name: status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.STATUS
+    - name: zip_code
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CUSTOMERS.ZIP_CODE
+  graphql:
+    typeName: learn_pql_public_customers_insert_input
+    inputTypeName: learn_pql_public_customers_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.CUSTOMERS_insert_input
+      fieldMapping:
+        address:
+          column:
+            name: ADDRESS
+        city:
+          column:
+            name: CITY
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        email:
+          column:
+            name: EMAIL
+        emergency_contact_name:
+          column:
+            name: EMERGENCY_CONTACT_NAME
+        emergency_contact_phone:
+          column:
+            name: EMERGENCY_CONTACT_PHONE
+        first_name:
+          column:
+            name: FIRST_NAME
+        last_name:
+          column:
+            name: LAST_NAME
+        phone:
+          column:
+            name: PHONE
+        preferred_location_id:
+          column:
+            name: PREFERRED_LOCATION_ID
+        registration_date:
+          column:
+            name: REGISTRATION_DATE
+        state:
+          column:
+            name: STATE
+        status:
+          column:
+            name: STATUS
+        zip_code:
+          column:
+            name: ZIP_CODE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_customers_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - city
+          - customer_id
+          - email
+          - emergency_contact_name
+          - emergency_contact_phone
+          - first_name
+          - last_name
+          - phone
+          - preferred_location_id
+          - registration_date
+          - state
+          - status
+          - zip_code
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_customers_result
+  description: insert from LEARN_PQL.PUBLIC.CUSTOMERS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_customers!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_customers_result
+    inputTypeName: insert_learn_pql_public_customers_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.CUSTOMERS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_customers_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_customers
+  outputType: insert_learn_pql_public_customers_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_customers_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.CUSTOMERS
+  graphql:
+    rootFieldName: insert_learn_pql_public_customers
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.CUSTOMERS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_customers
+  permissions:
+    - role: admin
+      allowExecution: true
+

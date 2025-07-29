@@ -1,0 +1,217 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_canine_data
+  description: "Object type for LEARN_PQL.PUBLIC.CANINE_DATA. Description: null"
+  fields:
+    - name: aggression_level
+      type: biginteger
+    - name: dog_id
+      type: biginteger
+    - name: energy_level
+      type: string
+    - name: grooming_frequency_weeks
+      type: biginteger
+    - name: last_grooming_date
+      type: date
+    - name: pet_key
+      type: biginteger!
+    - name: socialization_score
+      type: biginteger
+    - name: vaccination_status
+      type: string
+    - name: vet_clinic_name
+      type: string
+  graphql:
+    typeName: learn_pql_public_canine_data
+    inputTypeName: learn_pql_public_canine_data_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.CANINE_DATA
+      fieldMapping:
+        aggression_level:
+          column:
+            name: AGGRESSION_LEVEL
+        dog_id:
+          column:
+            name: DOG_ID
+        energy_level:
+          column:
+            name: ENERGY_LEVEL
+        grooming_frequency_weeks:
+          column:
+            name: GROOMING_FREQUENCY_WEEKS
+        last_grooming_date:
+          column:
+            name: LAST_GROOMING_DATE
+        pet_key:
+          column:
+            name: PET_KEY
+        socialization_score:
+          column:
+            name: SOCIALIZATION_SCORE
+        vaccination_status:
+          column:
+            name: VACCINATION_STATUS
+        vet_clinic_name:
+          column:
+            name: VET_CLINIC_NAME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_canine_data
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - aggression_level
+          - dog_id
+          - energy_level
+          - grooming_frequency_weeks
+          - last_grooming_date
+          - pet_key
+          - socialization_score
+          - vaccination_status
+          - vet_clinic_name
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_canine_data_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_canine_data
+      comparableFields:
+        - fieldName: aggression_level
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: energy_level
+          booleanExpressionType: text_bool_exp
+        - fieldName: grooming_frequency_weeks
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: last_grooming_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: pet_key
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: socialization_score
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: vaccination_status
+          booleanExpressionType: text_bool_exp
+        - fieldName: vet_clinic_name
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_canine_data_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_canine_data_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_canine_data
+      aggregatableFields:
+        - fieldName: aggression_level
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: energy_level
+          aggregateExpression: text_agg_exp
+        - fieldName: grooming_frequency_weeks
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: last_grooming_date
+          aggregateExpression: date_agg_exp
+        - fieldName: pet_key
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: socialization_score
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: vaccination_status
+          aggregateExpression: text_agg_exp
+        - fieldName: vet_clinic_name
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_canine_data_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_canine_data_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_canine_data
+      orderableFields:
+        - fieldName: aggression_level
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: energy_level
+          orderByExpression: string_order_by_exp
+        - fieldName: grooming_frequency_weeks
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: last_grooming_date
+          orderByExpression: date_order_by_exp
+        - fieldName: pet_key
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: socialization_score
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: vaccination_status
+          orderByExpression: string_order_by_exp
+        - fieldName: vet_clinic_name
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_canine_data_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_canine_data
+  objectType: learn_pql_public_canine_data
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.CANINE_DATA
+  filterExpressionType: learn_pql_public_canine_data_bool_exp
+  aggregateExpression: learn_pql_public_canine_data_agg_exp
+  orderByExpression: learn_pql_public_canine_data_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_canine_data
+      subscription:
+        rootField: learn_pql_public_canine_data
+    selectUniques:
+      - queryRootField: learn_pql_public_canine_data_by_pet_key
+        uniqueIdentifier:
+          - pet_key
+        subscription:
+          rootField: learn_pql_public_canine_data_by_pet_key
+    filterInputTypeName: learn_pql_public_canine_data_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_canine_data_aggregate
+      subscription:
+        rootField: learn_pql_public_canine_data_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_canine_data
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

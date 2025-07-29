@@ -1,0 +1,154 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_memberships_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.MEMBERSHIPS
+  fields:
+    - name: auto_renew
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.AUTO_RENEW
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.CUSTOMER_ID
+    - name: end_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.END_DATE
+    - name: location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.LOCATION_ID
+    - name: membership_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.MEMBERSHIP_ID
+    - name: membership_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.MEMBERSHIP_TYPE
+    - name: monthly_fee
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.MONTHLY_FEE
+    - name: start_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.START_DATE
+    - name: status
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.MEMBERSHIPS.STATUS
+  graphql:
+    typeName: learn_pql_public_memberships_set_input
+    inputTypeName: learn_pql_public_memberships_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.MEMBERSHIPS_set_input
+      fieldMapping:
+        auto_renew:
+          column:
+            name: AUTO_RENEW
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        end_date:
+          column:
+            name: END_DATE
+        location_id:
+          column:
+            name: LOCATION_ID
+        membership_id:
+          column:
+            name: MEMBERSHIP_ID
+        membership_type:
+          column:
+            name: MEMBERSHIP_TYPE
+        monthly_fee:
+          column:
+            name: MONTHLY_FEE
+        start_date:
+          column:
+            name: START_DATE
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_memberships_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - auto_renew
+          - customer_id
+          - end_date
+          - location_id
+          - membership_id
+          - membership_type
+          - monthly_fee
+          - start_date
+          - status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_memberships_result
+  description: update from LEARN_PQL.PUBLIC.MEMBERSHIPS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_memberships!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_memberships_result
+    inputTypeName: update_learn_pql_public_memberships_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.MEMBERSHIPS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_memberships_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_memberships
+  outputType: update_learn_pql_public_memberships_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_memberships_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_memberships_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.MEMBERSHIPS
+  graphql:
+    rootFieldName: update_learn_pql_public_memberships
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.MEMBERSHIPS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_memberships
+  permissions:
+    - role: admin
+      allowExecution: true
+

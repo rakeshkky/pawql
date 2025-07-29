@@ -1,0 +1,140 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_loyalty_txns_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.LOYALTY_TXNS
+  fields:
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.CUSTOMER_ID
+    - name: points_earned
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.POINTS_EARNED
+    - name: points_redeemed
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.POINTS_REDEEMED
+    - name: reference_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.REFERENCE_ID
+    - name: transaction_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.TRANSACTION_DATE
+    - name: transaction_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.TRANSACTION_TYPE
+    - name: txn_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.LOYALTY_TXNS.TXN_ID
+  graphql:
+    typeName: learn_pql_public_loyalty_txns_set_input
+    inputTypeName: learn_pql_public_loyalty_txns_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.LOYALTY_TXNS_set_input
+      fieldMapping:
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        points_earned:
+          column:
+            name: POINTS_EARNED
+        points_redeemed:
+          column:
+            name: POINTS_REDEEMED
+        reference_id:
+          column:
+            name: REFERENCE_ID
+        transaction_date:
+          column:
+            name: TRANSACTION_DATE
+        transaction_type:
+          column:
+            name: TRANSACTION_TYPE
+        txn_id:
+          column:
+            name: TXN_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_loyalty_txns_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - customer_id
+          - points_earned
+          - points_redeemed
+          - reference_id
+          - transaction_date
+          - transaction_type
+          - txn_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_loyalty_txns_result
+  description: update from LEARN_PQL.PUBLIC.LOYALTY_TXNS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_loyalty_txns!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_loyalty_txns_result
+    inputTypeName: update_learn_pql_public_loyalty_txns_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.LOYALTY_TXNS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_loyalty_txns_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_loyalty_txns
+  outputType: update_learn_pql_public_loyalty_txns_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_loyalty_txns_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_loyalty_txns_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.LOYALTY_TXNS
+  graphql:
+    rootFieldName: update_learn_pql_public_loyalty_txns
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.LOYALTY_TXNS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_loyalty_txns
+  permissions:
+    - role: admin
+      allowExecution: true
+

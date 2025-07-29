@@ -1,0 +1,165 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_appointments_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.APPOINTMENTS
+  fields:
+    - name: appointment_datetime
+      type: timestamp
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.APPOINTMENT_DATETIME
+    - name: appointment_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.APPOINTMENT_ID
+    - name: created_date
+      type: timestamp
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.CREATED_DATE
+    - name: customer_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.CUSTOMER_ID
+    - name: dog_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.DOG_ID
+    - name: duration_minutes
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.DURATION_MINUTES
+    - name: location_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.LOCATION_ID
+    - name: notes
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.NOTES
+    - name: service_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.SERVICE_ID
+    - name: staff_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.STAFF_ID
+    - name: status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.APPOINTMENTS.STATUS
+  graphql:
+    typeName: learn_pql_public_appointments_insert_input
+    inputTypeName: learn_pql_public_appointments_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.APPOINTMENTS_insert_input
+      fieldMapping:
+        appointment_datetime:
+          column:
+            name: APPOINTMENT_DATETIME
+        appointment_id:
+          column:
+            name: APPOINTMENT_ID
+        created_date:
+          column:
+            name: CREATED_DATE
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        dog_id:
+          column:
+            name: DOG_ID
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        location_id:
+          column:
+            name: LOCATION_ID
+        notes:
+          column:
+            name: NOTES
+        service_id:
+          column:
+            name: SERVICE_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_appointments_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - appointment_datetime
+          - appointment_id
+          - created_date
+          - customer_id
+          - dog_id
+          - duration_minutes
+          - location_id
+          - notes
+          - service_id
+          - staff_id
+          - status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_appointments_result
+  description: insert from LEARN_PQL.PUBLIC.APPOINTMENTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_appointments!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_appointments_result
+    inputTypeName: insert_learn_pql_public_appointments_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.APPOINTMENTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_appointments_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_appointments
+  outputType: insert_learn_pql_public_appointments_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_appointments_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.APPOINTMENTS
+  graphql:
+    rootFieldName: insert_learn_pql_public_appointments
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.APPOINTMENTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_appointments
+  permissions:
+    - role: admin
+      allowExecution: true
+

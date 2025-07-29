@@ -1,0 +1,2737 @@
+{
+    "version": "v2",
+    "connection_uri": {
+        "variable": "JDBC_URL"
+    },
+    "tables": [
+        {
+            "name": "LEARN_PQL.PUBLIC.ADJ_TABLE",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "ADJ_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_REF",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "ADJ_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "PROCESSED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "REASON_CODE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ADJUSTMENT_AMT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.APPOINTMENTS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "APPOINTMENT_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "NOTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SERVICE_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DURATION_MINUTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "APPOINTMENT_DATETIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STAFF_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "CREATED_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "APPOINTMENT_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.BILLING_DATA",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "INVOICE_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "DUE_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "BALANCE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "AMOUNT_PAID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "INVOICE_NUMBER",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "PAYMENT_STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "BILLING_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "AMOUNT_DUE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "BILLING_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.BOARDING_STAYS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "KENNEL_NUMBER",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "EMERGENCY_CONTACT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DAILY_RATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 8,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "CHECK_OUT_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "STAY_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "CHECK_IN_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STAY_STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "SPECIAL_INSTRUCTIONS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "TOTAL_COST",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "PICKUP_AUTHORIZED_PERSONS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "STAY_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.CANINE_DATA",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "SOCIALIZATION_SCORE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "VET_CLINIC_NAME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "VACCINATION_STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "LAST_GROOMING_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "PET_KEY",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "AGGRESSION_LEVEL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "GROOMING_FREQUENCY_WEEKS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "ENERGY_LEVEL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "PET_KEY"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.CONFIG_SETTINGS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "SETTING_VALUE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ENVIRONMENT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "LAST_UPDATED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "SETTING_KEY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.CUSTOMERS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "ZIP_CODE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "PHONE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "LAST_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "EMAIL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "EMERGENCY_CONTACT_NAME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "EMERGENCY_CONTACT_PHONE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ADDRESS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "FIRST_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "PREFERRED_LOCATION_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "REGISTRATION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "CITY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "CUSTOMER_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.DOGS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "MICROCHIP_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "BIRTH_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "L_1",
+                    "description": "Legacy system field - classification index",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DOG_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "OWNER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SIZE_CATEGORY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "L_3",
+                    "description": "Business metric - proprietary calculation",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "REGISTRATION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "BREED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "L_2",
+                    "description": "Risk assessment value - internal use",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "WEIGHT_LBS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 5,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "SPECIAL_NEEDS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "COLOR",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "GENDER",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "DOG_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.DOG_VACCINATIONS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "VACCINE_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "VACC_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "VET_CLINIC",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "CERTIFICATE_NUMBER",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "EXPIRATION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "VACCINATION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "VACC_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "GROOMER_NM",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "NOTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DOG_REF",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "SVC_DT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "COST",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 8,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "MIGRATED_FLAG",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.GROOM_SESSIONS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "START_TIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "SESSION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "BEFORE_PHOTO_URL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "GROOMING_NOTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_RATING",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SERVICE_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "APPT_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "END_TIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "GROOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SESSION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "AFTER_PHOTO_URL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "SESSION_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.INCIDENT_REPORTS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "REPORT_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "INCIDENT_TIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIME"
+                    }
+                },
+                {
+                    "name": "STAFF_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "INCIDENT_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "RESOLVED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "DESCRIPTION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "INCIDENT_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "SEVERITY_LEVEL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "REPORT_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.LOCATIONS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "PHONE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CITY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "GROOMING_STATIONS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "ZIP_CODE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "SQUARE_FOOTAGE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "MANAGER_NAME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "PARK_CAPACITY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "BOARDING_KENNELS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "OPENED_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "LOCATION_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ADDRESS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "LOCATION_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.LOYALTY_TXNS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "POINTS_EARNED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "TRANSACTION_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "TXN_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "REFERENCE_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "TRANSACTION_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "POINTS_REDEEMED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "TXN_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.MEMBERSHIPS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "MEMBERSHIP_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "MEMBERSHIP_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "START_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "MONTHLY_FEE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 8,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "AUTO_RENEW",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "END_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "MEMBERSHIP_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.OLD_KENNEL_DATA",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "AMT_PAID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "DOG_NAME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "MISC_NOTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "REC_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "OWNER_INFO",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STAY_DATES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.PARK_VISITS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "VISIT_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "CHECKIN_TIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "DOG_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "VISIT_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DURATION_MINUTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STAFF_ON_DUTY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "CHECKOUT_TIME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TIMESTAMP_NTZ"
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "INCIDENT_REPORTED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "VISIT_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.PAYMENTS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "PAYMENT_METHOD",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "TRANSACTION_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "APPOINTMENT_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "AMOUNT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "PAYMENT_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "PAYMENT_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "PAYMENT_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.PAY_METHODS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "PM_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "EXP_MONTH",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "IS_DEFAULT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "LAST_FOUR_DIGITS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CARD_TYPE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "EXP_YEAR",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "PM_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.PET_PARENTS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "MARKETING_CONSENT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "LAST_VISIT_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "CLIENT_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "TOTAL_SPENT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 10,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "CUSTOMER_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SIGNUP_SOURCE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "LOYALTY_TIER",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "CLIENT_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.REF_TBL_1",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "DESCRIPTION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "ACTIVE_IND",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CATEGORY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "CODE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.SERVICES",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "ACTIVE_STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "SERVICE_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "SERVICE_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SERVICE_CATEGORY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "DURATION_MINUTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DESCRIPTION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "REQUIRES_VACCINATION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "BASE_PRICE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 8,
+                            "scale": 2
+                        }
+                    }
+                }
+            ],
+            "primary_keys": [
+                "SERVICE_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.STAFF",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "PHONE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "PRIMARY_LOCATION_ID",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "STATUS",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "STAFF_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "HOURLY_RATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 5,
+                            "scale": 2
+                        }
+                    }
+                },
+                {
+                    "name": "LAST_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "JOB_TITLE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "HIRE_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "FIRST_NAME",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "EMAIL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "STAFF_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.STAFF_LOCATIONS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "STAFF_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "END_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                },
+                {
+                    "name": "LOCATION_ID",
+                    "nullable": false,
+                    "auto_increment": false,
+                    "is_primarykey": true,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 38,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "START_DATE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "DATE"
+                    }
+                }
+            ],
+            "primary_keys": [
+                "STAFF_ID",
+                "LOCATION_ID"
+            ],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "ENERGY_LEVEL",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "GROOMING_SCORE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 2,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "BREED",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "TEMPERAMENT",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "INCIDENT_RISK",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 2,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SIZE_CATEGORY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        },
+        {
+            "name": "LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES",
+            "description": null,
+            "category": "TABLE",
+            "columns": [
+                {
+                    "name": "REQUIRES_VACCINATION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "BOOLEAN"
+                    }
+                },
+                {
+                    "name": "DESCRIPTION",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "BASE_PRICE",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 3,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "DURATION_MINUTES",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "NUMBER",
+                        "metadata": {
+                            "type": "numeric",
+                            "precision": 4,
+                            "scale": 0
+                        }
+                    }
+                },
+                {
+                    "name": "SERVICE_CATEGORY",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                },
+                {
+                    "name": "SERVICE_NAME",
+                    "nullable": true,
+                    "auto_increment": false,
+                    "is_primarykey": false,
+                    "data": {
+                        "database_type": "TEXT"
+                    }
+                }
+            ],
+            "primary_keys": [],
+            "foreign_keys": {}
+        }
+    ]
+}

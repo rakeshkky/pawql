@@ -1,0 +1,304 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_dogs
+  description: "Object type for LEARN_PQL.PUBLIC.DOGS. Description: null"
+  fields:
+    - name: birth_date
+      type: date
+    - name: breed
+      type: string
+    - name: color
+      type: string
+    - name: dog_id
+      type: biginteger!
+    - name: dog_name
+      type: string!
+    - name: gender
+      type: string
+    - name: l_1
+      type: biginteger
+      description: Legacy system field - classification index
+    - name: l_2
+      type: biginteger
+      description: Risk assessment value - internal use
+    - name: l_3
+      type: biginteger
+      description: Business metric - proprietary calculation
+    - name: microchip_id
+      type: string
+    - name: owner_id
+      type: biginteger!
+    - name: registration_date
+      type: date
+    - name: size_category
+      type: string
+    - name: special_needs
+      type: string
+    - name: status
+      type: string
+    - name: weight_lbs
+      type: bigdecimal
+  graphql:
+    typeName: learn_pql_public_dogs
+    inputTypeName: learn_pql_public_dogs_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.DOGS
+      fieldMapping:
+        birth_date:
+          column:
+            name: BIRTH_DATE
+        breed:
+          column:
+            name: BREED
+        color:
+          column:
+            name: COLOR
+        dog_id:
+          column:
+            name: DOG_ID
+        dog_name:
+          column:
+            name: DOG_NAME
+        gender:
+          column:
+            name: GENDER
+        l_1:
+          column:
+            name: L_1
+        l_2:
+          column:
+            name: L_2
+        l_3:
+          column:
+            name: L_3
+        microchip_id:
+          column:
+            name: MICROCHIP_ID
+        owner_id:
+          column:
+            name: OWNER_ID
+        registration_date:
+          column:
+            name: REGISTRATION_DATE
+        size_category:
+          column:
+            name: SIZE_CATEGORY
+        special_needs:
+          column:
+            name: SPECIAL_NEEDS
+        status:
+          column:
+            name: STATUS
+        weight_lbs:
+          column:
+            name: WEIGHT_LBS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_dogs
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - birth_date
+          - breed
+          - color
+          - dog_id
+          - dog_name
+          - gender
+          - l_1
+          - l_2
+          - l_3
+          - microchip_id
+          - owner_id
+          - registration_date
+          - size_category
+          - special_needs
+          - status
+          - weight_lbs
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_dogs_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_dogs
+      comparableFields:
+        - fieldName: birth_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: breed
+          booleanExpressionType: text_bool_exp
+        - fieldName: color
+          booleanExpressionType: text_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: dog_name
+          booleanExpressionType: text_bool_exp
+        - fieldName: gender
+          booleanExpressionType: text_bool_exp
+        - fieldName: l_1
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: l_2
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: l_3
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: microchip_id
+          booleanExpressionType: text_bool_exp
+        - fieldName: owner_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: registration_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: size_category
+          booleanExpressionType: text_bool_exp
+        - fieldName: special_needs
+          booleanExpressionType: text_bool_exp
+        - fieldName: status
+          booleanExpressionType: text_bool_exp
+        - fieldName: weight_lbs
+          booleanExpressionType: bigdecimal_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_dogs_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_dogs_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_dogs
+      aggregatableFields:
+        - fieldName: birth_date
+          aggregateExpression: date_agg_exp
+        - fieldName: breed
+          aggregateExpression: text_agg_exp
+        - fieldName: color
+          aggregateExpression: text_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: dog_name
+          aggregateExpression: text_agg_exp
+        - fieldName: gender
+          aggregateExpression: text_agg_exp
+        - fieldName: l_1
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: l_2
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: l_3
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: microchip_id
+          aggregateExpression: text_agg_exp
+        - fieldName: owner_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: registration_date
+          aggregateExpression: date_agg_exp
+        - fieldName: size_category
+          aggregateExpression: text_agg_exp
+        - fieldName: special_needs
+          aggregateExpression: text_agg_exp
+        - fieldName: status
+          aggregateExpression: text_agg_exp
+        - fieldName: weight_lbs
+          aggregateExpression: bigdecimal_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_dogs_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_dogs_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_dogs
+      orderableFields:
+        - fieldName: birth_date
+          orderByExpression: date_order_by_exp
+        - fieldName: breed
+          orderByExpression: string_order_by_exp
+        - fieldName: color
+          orderByExpression: string_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: dog_name
+          orderByExpression: string_order_by_exp
+        - fieldName: gender
+          orderByExpression: string_order_by_exp
+        - fieldName: l_1
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: l_2
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: l_3
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: microchip_id
+          orderByExpression: string_order_by_exp
+        - fieldName: owner_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: registration_date
+          orderByExpression: date_order_by_exp
+        - fieldName: size_category
+          orderByExpression: string_order_by_exp
+        - fieldName: special_needs
+          orderByExpression: string_order_by_exp
+        - fieldName: status
+          orderByExpression: string_order_by_exp
+        - fieldName: weight_lbs
+          orderByExpression: bigdecimal_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_dogs_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_dogs
+  objectType: learn_pql_public_dogs
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.DOGS
+  filterExpressionType: learn_pql_public_dogs_bool_exp
+  aggregateExpression: learn_pql_public_dogs_agg_exp
+  orderByExpression: learn_pql_public_dogs_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_dogs
+      subscription:
+        rootField: learn_pql_public_dogs
+    selectUniques:
+      - queryRootField: learn_pql_public_dogs_by_dog_id
+        uniqueIdentifier:
+          - dog_id
+        subscription:
+          rootField: learn_pql_public_dogs_by_dog_id
+    filterInputTypeName: learn_pql_public_dogs_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_dogs_aggregate
+      subscription:
+        rootField: learn_pql_public_dogs_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_dogs
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

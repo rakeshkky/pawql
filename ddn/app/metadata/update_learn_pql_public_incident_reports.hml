@@ -1,0 +1,189 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: time_set_input
+  description: Wrapper for setting scalar TIME
+  fields:
+    - name: value
+      type: timestamp
+      description: New value for scalar TIME
+  graphql:
+    typeName: time_set_input
+    inputTypeName: time_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: TIME_set_input
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: time_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_incident_reports_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.INCIDENT_REPORTS
+  fields:
+    - name: description
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.DESCRIPTION
+    - name: dog_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.DOG_ID
+    - name: incident_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.INCIDENT_DATE
+    - name: incident_time
+      type: time_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.INCIDENT_TIME
+    - name: incident_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.INCIDENT_TYPE
+    - name: location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.LOCATION_ID
+    - name: report_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.REPORT_ID
+    - name: resolved
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.RESOLVED
+    - name: severity_level
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.SEVERITY_LEVEL
+    - name: staff_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.INCIDENT_REPORTS.STAFF_ID
+  graphql:
+    typeName: learn_pql_public_incident_reports_set_input
+    inputTypeName: learn_pql_public_incident_reports_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.INCIDENT_REPORTS_set_input
+      fieldMapping:
+        description:
+          column:
+            name: DESCRIPTION
+        dog_id:
+          column:
+            name: DOG_ID
+        incident_date:
+          column:
+            name: INCIDENT_DATE
+        incident_time:
+          column:
+            name: INCIDENT_TIME
+        incident_type:
+          column:
+            name: INCIDENT_TYPE
+        location_id:
+          column:
+            name: LOCATION_ID
+        report_id:
+          column:
+            name: REPORT_ID
+        resolved:
+          column:
+            name: RESOLVED
+        severity_level:
+          column:
+            name: SEVERITY_LEVEL
+        staff_id:
+          column:
+            name: STAFF_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_incident_reports_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - dog_id
+          - incident_date
+          - incident_time
+          - incident_type
+          - location_id
+          - report_id
+          - resolved
+          - severity_level
+          - staff_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_incident_reports_result
+  description: update from LEARN_PQL.PUBLIC.INCIDENT_REPORTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_incident_reports!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_incident_reports_result
+    inputTypeName: update_learn_pql_public_incident_reports_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.INCIDENT_REPORTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_incident_reports_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_incident_reports
+  outputType: update_learn_pql_public_incident_reports_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_incident_reports_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_incident_reports_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.INCIDENT_REPORTS
+  graphql:
+    rootFieldName: update_learn_pql_public_incident_reports
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.INCIDENT_REPORTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_incident_reports
+  permissions:
+    - role: admin
+      allowExecution: true
+

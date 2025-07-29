@@ -1,0 +1,154 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_park_visits_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.PARK_VISITS
+  fields:
+    - name: checkin_time
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.CHECKIN_TIME
+    - name: checkout_time
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.CHECKOUT_TIME
+    - name: dog_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.DOG_ID
+    - name: duration_minutes
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.DURATION_MINUTES
+    - name: incident_reported
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.INCIDENT_REPORTED
+    - name: location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.LOCATION_ID
+    - name: staff_on_duty
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.STAFF_ON_DUTY
+    - name: visit_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.VISIT_DATE
+    - name: visit_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PARK_VISITS.VISIT_ID
+  graphql:
+    typeName: learn_pql_public_park_visits_set_input
+    inputTypeName: learn_pql_public_park_visits_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PARK_VISITS_set_input
+      fieldMapping:
+        checkin_time:
+          column:
+            name: CHECKIN_TIME
+        checkout_time:
+          column:
+            name: CHECKOUT_TIME
+        dog_id:
+          column:
+            name: DOG_ID
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        incident_reported:
+          column:
+            name: INCIDENT_REPORTED
+        location_id:
+          column:
+            name: LOCATION_ID
+        staff_on_duty:
+          column:
+            name: STAFF_ON_DUTY
+        visit_date:
+          column:
+            name: VISIT_DATE
+        visit_id:
+          column:
+            name: VISIT_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_park_visits_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - checkin_time
+          - checkout_time
+          - dog_id
+          - duration_minutes
+          - incident_reported
+          - location_id
+          - staff_on_duty
+          - visit_date
+          - visit_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_park_visits_result
+  description: update from LEARN_PQL.PUBLIC.PARK_VISITS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_park_visits!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_park_visits_result
+    inputTypeName: update_learn_pql_public_park_visits_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.PARK_VISITS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_park_visits_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_park_visits
+  outputType: update_learn_pql_public_park_visits_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_park_visits_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_park_visits_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.PARK_VISITS
+  graphql:
+    rootFieldName: update_learn_pql_public_park_visits
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.PARK_VISITS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_park_visits
+  permissions:
+    - role: admin
+      allowExecution: true
+

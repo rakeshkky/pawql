@@ -1,0 +1,130 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_temp_service_types_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES
+  fields:
+    - name: base_price
+      type: int_16
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.BASE_PRICE
+    - name: description
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.DESCRIPTION
+    - name: duration_minutes
+      type: int_16
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.DURATION_MINUTES
+    - name: requires_vaccination
+      type: boolean
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.REQUIRES_VACCINATION
+    - name: service_category
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.SERVICE_CATEGORY
+    - name: service_name
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES.SERVICE_NAME
+  graphql:
+    typeName: learn_pql_public_temp_service_types_insert_input
+    inputTypeName: learn_pql_public_temp_service_types_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES_insert_input
+      fieldMapping:
+        base_price:
+          column:
+            name: BASE_PRICE
+        description:
+          column:
+            name: DESCRIPTION
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        requires_vaccination:
+          column:
+            name: REQUIRES_VACCINATION
+        service_category:
+          column:
+            name: SERVICE_CATEGORY
+        service_name:
+          column:
+            name: SERVICE_NAME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_temp_service_types_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - base_price
+          - description
+          - duration_minutes
+          - requires_vaccination
+          - service_category
+          - service_name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_temp_service_types_result
+  description: insert from LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_temp_service_types!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_temp_service_types_result
+    inputTypeName: insert_learn_pql_public_temp_service_types_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_temp_service_types_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_temp_service_types
+  outputType: insert_learn_pql_public_temp_service_types_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_temp_service_types_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES
+  graphql:
+    rootFieldName: insert_learn_pql_public_temp_service_types
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.TEMP_SERVICE_TYPES
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_temp_service_types
+  permissions:
+    - role: admin
+      allowExecution: true
+

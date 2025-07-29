@@ -1,0 +1,189 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_customers_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.CUSTOMERS
+  fields:
+    - name: address
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.ADDRESS
+    - name: city
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.CITY
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.CUSTOMER_ID
+    - name: email
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.EMAIL
+    - name: emergency_contact_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.EMERGENCY_CONTACT_NAME
+    - name: emergency_contact_phone
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.EMERGENCY_CONTACT_PHONE
+    - name: first_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.FIRST_NAME
+    - name: last_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.LAST_NAME
+    - name: phone
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.PHONE
+    - name: preferred_location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.PREFERRED_LOCATION_ID
+    - name: registration_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.REGISTRATION_DATE
+    - name: state
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.STATE
+    - name: status
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.STATUS
+    - name: zip_code
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CUSTOMERS.ZIP_CODE
+  graphql:
+    typeName: learn_pql_public_customers_set_input
+    inputTypeName: learn_pql_public_customers_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.CUSTOMERS_set_input
+      fieldMapping:
+        address:
+          column:
+            name: ADDRESS
+        city:
+          column:
+            name: CITY
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        email:
+          column:
+            name: EMAIL
+        emergency_contact_name:
+          column:
+            name: EMERGENCY_CONTACT_NAME
+        emergency_contact_phone:
+          column:
+            name: EMERGENCY_CONTACT_PHONE
+        first_name:
+          column:
+            name: FIRST_NAME
+        last_name:
+          column:
+            name: LAST_NAME
+        phone:
+          column:
+            name: PHONE
+        preferred_location_id:
+          column:
+            name: PREFERRED_LOCATION_ID
+        registration_date:
+          column:
+            name: REGISTRATION_DATE
+        state:
+          column:
+            name: STATE
+        status:
+          column:
+            name: STATUS
+        zip_code:
+          column:
+            name: ZIP_CODE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_customers_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - address
+          - city
+          - customer_id
+          - email
+          - emergency_contact_name
+          - emergency_contact_phone
+          - first_name
+          - last_name
+          - phone
+          - preferred_location_id
+          - registration_date
+          - state
+          - status
+          - zip_code
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_customers_result
+  description: update from LEARN_PQL.PUBLIC.CUSTOMERS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_customers!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_customers_result
+    inputTypeName: update_learn_pql_public_customers_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.CUSTOMERS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_customers_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_customers
+  outputType: update_learn_pql_public_customers_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_customers_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_customers_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.CUSTOMERS
+  graphql:
+    rootFieldName: update_learn_pql_public_customers
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.CUSTOMERS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_customers
+  permissions:
+    - role: admin
+      allowExecution: true
+

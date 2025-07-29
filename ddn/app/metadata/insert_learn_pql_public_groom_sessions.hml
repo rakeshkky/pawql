@@ -1,0 +1,172 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.GROOM_SESSIONS
+  fields:
+    - name: after_photo_url
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.AFTER_PHOTO_URL
+    - name: appt_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.APPT_ID
+    - name: before_photo_url
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.BEFORE_PHOTO_URL
+    - name: customer_rating
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.CUSTOMER_RATING
+    - name: dog_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.DOG_ID
+    - name: end_time
+      type: timestamp
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.END_TIME
+    - name: groomer_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.GROOMER_ID
+    - name: grooming_notes
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.GROOMING_NOTES
+    - name: service_type
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SERVICE_TYPE
+    - name: session_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SESSION_DATE
+    - name: session_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SESSION_ID
+    - name: start_time
+      type: timestamp
+      description: New value for LEARN_PQL.PUBLIC.GROOM_SESSIONS.START_TIME
+  graphql:
+    typeName: learn_pql_public_groom_sessions_insert_input
+    inputTypeName: learn_pql_public_groom_sessions_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.GROOM_SESSIONS_insert_input
+      fieldMapping:
+        after_photo_url:
+          column:
+            name: AFTER_PHOTO_URL
+        appt_id:
+          column:
+            name: APPT_ID
+        before_photo_url:
+          column:
+            name: BEFORE_PHOTO_URL
+        customer_rating:
+          column:
+            name: CUSTOMER_RATING
+        dog_id:
+          column:
+            name: DOG_ID
+        end_time:
+          column:
+            name: END_TIME
+        groomer_id:
+          column:
+            name: GROOMER_ID
+        grooming_notes:
+          column:
+            name: GROOMING_NOTES
+        service_type:
+          column:
+            name: SERVICE_TYPE
+        session_date:
+          column:
+            name: SESSION_DATE
+        session_id:
+          column:
+            name: SESSION_ID
+        start_time:
+          column:
+            name: START_TIME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_groom_sessions_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - after_photo_url
+          - appt_id
+          - before_photo_url
+          - customer_rating
+          - dog_id
+          - end_time
+          - groomer_id
+          - grooming_notes
+          - service_type
+          - session_date
+          - session_id
+          - start_time
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_groom_sessions_result
+  description: insert from LEARN_PQL.PUBLIC.GROOM_SESSIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_groom_sessions!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_groom_sessions_result
+    inputTypeName: insert_learn_pql_public_groom_sessions_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.GROOM_SESSIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_groom_sessions_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_groom_sessions
+  outputType: insert_learn_pql_public_groom_sessions_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_groom_sessions_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.GROOM_SESSIONS
+  graphql:
+    rootFieldName: insert_learn_pql_public_groom_sessions
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.GROOM_SESSIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_groom_sessions
+  permissions:
+    - role: admin
+      allowExecution: true
+

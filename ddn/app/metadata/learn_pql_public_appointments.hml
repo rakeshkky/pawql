@@ -1,0 +1,241 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_appointments
+  description: "Object type for LEARN_PQL.PUBLIC.APPOINTMENTS. Description: null"
+  fields:
+    - name: appointment_datetime
+      type: timestamp
+    - name: appointment_id
+      type: biginteger!
+    - name: created_date
+      type: timestamp
+    - name: customer_id
+      type: biginteger!
+    - name: dog_id
+      type: biginteger!
+    - name: duration_minutes
+      type: biginteger
+    - name: location_id
+      type: biginteger!
+    - name: notes
+      type: string
+    - name: service_id
+      type: biginteger!
+    - name: staff_id
+      type: biginteger
+    - name: status
+      type: string
+  graphql:
+    typeName: learn_pql_public_appointments
+    inputTypeName: learn_pql_public_appointments_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.APPOINTMENTS
+      fieldMapping:
+        appointment_datetime:
+          column:
+            name: APPOINTMENT_DATETIME
+        appointment_id:
+          column:
+            name: APPOINTMENT_ID
+        created_date:
+          column:
+            name: CREATED_DATE
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        dog_id:
+          column:
+            name: DOG_ID
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        location_id:
+          column:
+            name: LOCATION_ID
+        notes:
+          column:
+            name: NOTES
+        service_id:
+          column:
+            name: SERVICE_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_appointments
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - appointment_datetime
+          - appointment_id
+          - created_date
+          - customer_id
+          - dog_id
+          - duration_minutes
+          - location_id
+          - notes
+          - service_id
+          - staff_id
+          - status
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_appointments_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_appointments
+      comparableFields:
+        - fieldName: appointment_datetime
+          booleanExpressionType: timestamp_ntz_bool_exp
+        - fieldName: appointment_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: created_date
+          booleanExpressionType: timestamp_ntz_bool_exp
+        - fieldName: customer_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: duration_minutes
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: notes
+          booleanExpressionType: text_bool_exp
+        - fieldName: service_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: staff_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: status
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_appointments_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_appointments_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_appointments
+      aggregatableFields:
+        - fieldName: appointment_datetime
+          aggregateExpression: timestamp_ntz_agg_exp
+        - fieldName: appointment_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: created_date
+          aggregateExpression: timestamp_ntz_agg_exp
+        - fieldName: customer_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: duration_minutes
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: notes
+          aggregateExpression: text_agg_exp
+        - fieldName: service_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: staff_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: status
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_appointments_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_appointments_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_appointments
+      orderableFields:
+        - fieldName: appointment_datetime
+          orderByExpression: timestamp_order_by_exp
+        - fieldName: appointment_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: created_date
+          orderByExpression: timestamp_order_by_exp
+        - fieldName: customer_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: duration_minutes
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: notes
+          orderByExpression: string_order_by_exp
+        - fieldName: service_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: staff_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: status
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_appointments_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_appointments
+  objectType: learn_pql_public_appointments
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.APPOINTMENTS
+  filterExpressionType: learn_pql_public_appointments_bool_exp
+  aggregateExpression: learn_pql_public_appointments_agg_exp
+  orderByExpression: learn_pql_public_appointments_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_appointments
+      subscription:
+        rootField: learn_pql_public_appointments
+    selectUniques:
+      - queryRootField: learn_pql_public_appointments_by_appointment_id
+        uniqueIdentifier:
+          - appointment_id
+        subscription:
+          rootField: learn_pql_public_appointments_by_appointment_id
+    filterInputTypeName: learn_pql_public_appointments_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_appointments_aggregate
+      subscription:
+        rootField: learn_pql_public_appointments_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_appointments
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,119 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_config_settings_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.CONFIG_SETTINGS
+  fields:
+    - name: environment
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CONFIG_SETTINGS.ENVIRONMENT
+    - name: last_updated
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CONFIG_SETTINGS.LAST_UPDATED
+    - name: setting_key
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CONFIG_SETTINGS.SETTING_KEY
+    - name: setting_value
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.CONFIG_SETTINGS.SETTING_VALUE
+  graphql:
+    typeName: learn_pql_public_config_settings_set_input
+    inputTypeName: learn_pql_public_config_settings_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.CONFIG_SETTINGS_set_input
+      fieldMapping:
+        environment:
+          column:
+            name: ENVIRONMENT
+        last_updated:
+          column:
+            name: LAST_UPDATED
+        setting_key:
+          column:
+            name: SETTING_KEY
+        setting_value:
+          column:
+            name: SETTING_VALUE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_config_settings_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - environment
+          - last_updated
+          - setting_key
+          - setting_value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_config_settings_result
+  description: update from LEARN_PQL.PUBLIC.CONFIG_SETTINGS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_config_settings!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_config_settings_result
+    inputTypeName: update_learn_pql_public_config_settings_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.CONFIG_SETTINGS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_config_settings_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_config_settings
+  outputType: update_learn_pql_public_config_settings_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_config_settings_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_config_settings_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.CONFIG_SETTINGS
+  graphql:
+    rootFieldName: update_learn_pql_public_config_settings
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.CONFIG_SETTINGS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_config_settings
+  permissions:
+    - role: admin
+      allowExecution: true
+

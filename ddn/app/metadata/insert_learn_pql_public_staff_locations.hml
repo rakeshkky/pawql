@@ -1,0 +1,116 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff_locations_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+  fields:
+    - name: end_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.END_DATE
+    - name: location_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.LOCATION_ID
+    - name: staff_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.STAFF_ID
+    - name: start_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.STAFF_LOCATIONS.START_DATE
+  graphql:
+    typeName: learn_pql_public_staff_locations_insert_input
+    inputTypeName: learn_pql_public_staff_locations_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF_LOCATIONS_insert_input
+      fieldMapping:
+        end_date:
+          column:
+            name: END_DATE
+        location_id:
+          column:
+            name: LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        start_date:
+          column:
+            name: START_DATE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff_locations_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - end_date
+          - location_id
+          - staff_id
+          - start_date
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_staff_locations_result
+  description: insert from LEARN_PQL.PUBLIC.STAFF_LOCATIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_staff_locations!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_staff_locations_result
+    inputTypeName: insert_learn_pql_public_staff_locations_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.STAFF_LOCATIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_staff_locations_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_staff_locations
+  outputType: insert_learn_pql_public_staff_locations_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_staff_locations_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+  graphql:
+    rootFieldName: insert_learn_pql_public_staff_locations
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_staff_locations
+  permissions:
+    - role: admin
+      allowExecution: true
+

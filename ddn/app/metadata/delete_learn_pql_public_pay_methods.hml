@@ -1,0 +1,63 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: delete_learn_pql_public_pay_methods_result
+  description: delete from LEARN_PQL.PUBLIC.PAY_METHODS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_pay_methods!]!"
+      description: Objects that were affected by delete
+  graphql:
+    typeName: delete_learn_pql_public_pay_methods_result
+    inputTypeName: delete_learn_pql_public_pay_methods_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: delete_LEARN_PQL.PUBLIC.PAY_METHODS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: delete_learn_pql_public_pay_methods_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: delete_learn_pql_public_pay_methods
+  outputType: delete_learn_pql_public_pay_methods_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: where
+      type: learn_pql_public_pay_methods_bool_exp!
+      description: Filter for rows to delete
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: delete_LEARN_PQL.PUBLIC.PAY_METHODS
+  graphql:
+    rootFieldName: delete_learn_pql_public_pay_methods
+    rootFieldKind: Mutation
+  description: Delete from LEARN_PQL.PUBLIC.PAY_METHODS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: delete_learn_pql_public_pay_methods
+  permissions:
+    - role: admin
+      allowExecution: true
+

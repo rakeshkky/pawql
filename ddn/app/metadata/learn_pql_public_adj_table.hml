@@ -1,0 +1,176 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_adj_table
+  description: "Object type for LEARN_PQL.PUBLIC.ADJ_TABLE. Description: null"
+  fields:
+    - name: adj_date
+      type: date
+    - name: adj_id
+      type: biginteger
+    - name: adjustment_amt
+      type: bigdecimal
+    - name: customer_ref
+      type: biginteger
+    - name: processed
+      type: boolean
+    - name: reason_code
+      type: string
+  graphql:
+    typeName: learn_pql_public_adj_table
+    inputTypeName: learn_pql_public_adj_table_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.ADJ_TABLE
+      fieldMapping:
+        adj_date:
+          column:
+            name: ADJ_DATE
+        adj_id:
+          column:
+            name: ADJ_ID
+        adjustment_amt:
+          column:
+            name: ADJUSTMENT_AMT
+        customer_ref:
+          column:
+            name: CUSTOMER_REF
+        processed:
+          column:
+            name: PROCESSED
+        reason_code:
+          column:
+            name: REASON_CODE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_adj_table
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - adj_date
+          - adj_id
+          - adjustment_amt
+          - customer_ref
+          - processed
+          - reason_code
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_adj_table_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_adj_table
+      comparableFields:
+        - fieldName: adj_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: adj_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: adjustment_amt
+          booleanExpressionType: bigdecimal_bool_exp
+        - fieldName: customer_ref
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: processed
+          booleanExpressionType: boolean_bool_exp
+        - fieldName: reason_code
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_adj_table_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_adj_table_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_adj_table
+      aggregatableFields:
+        - fieldName: adj_date
+          aggregateExpression: date_agg_exp
+        - fieldName: adj_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: adjustment_amt
+          aggregateExpression: bigdecimal_agg_exp
+        - fieldName: customer_ref
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: processed
+          aggregateExpression: boolean_agg_exp
+        - fieldName: reason_code
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_adj_table_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_adj_table_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_adj_table
+      orderableFields:
+        - fieldName: adj_date
+          orderByExpression: date_order_by_exp
+        - fieldName: adj_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: adjustment_amt
+          orderByExpression: bigdecimal_order_by_exp
+        - fieldName: customer_ref
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: processed
+          orderByExpression: boolean_order_by_exp
+        - fieldName: reason_code
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_adj_table_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_adj_table
+  objectType: learn_pql_public_adj_table
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.ADJ_TABLE
+  filterExpressionType: learn_pql_public_adj_table_bool_exp
+  aggregateExpression: learn_pql_public_adj_table_agg_exp
+  orderByExpression: learn_pql_public_adj_table_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_adj_table
+      subscription:
+        rootField: learn_pql_public_adj_table
+    selectUniques: []
+    filterInputTypeName: learn_pql_public_adj_table_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_adj_table_aggregate
+      subscription:
+        rootField: learn_pql_public_adj_table_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_adj_table
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

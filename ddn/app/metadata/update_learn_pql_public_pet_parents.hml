@@ -1,0 +1,140 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_pet_parents_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.PET_PARENTS
+  fields:
+    - name: client_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.CLIENT_ID
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.CUSTOMER_ID
+    - name: last_visit_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.LAST_VISIT_DATE
+    - name: loyalty_tier
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.LOYALTY_TIER
+    - name: marketing_consent
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.MARKETING_CONSENT
+    - name: signup_source
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.SIGNUP_SOURCE
+    - name: total_spent
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PET_PARENTS.TOTAL_SPENT
+  graphql:
+    typeName: learn_pql_public_pet_parents_set_input
+    inputTypeName: learn_pql_public_pet_parents_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PET_PARENTS_set_input
+      fieldMapping:
+        client_id:
+          column:
+            name: CLIENT_ID
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        last_visit_date:
+          column:
+            name: LAST_VISIT_DATE
+        loyalty_tier:
+          column:
+            name: LOYALTY_TIER
+        marketing_consent:
+          column:
+            name: MARKETING_CONSENT
+        signup_source:
+          column:
+            name: SIGNUP_SOURCE
+        total_spent:
+          column:
+            name: TOTAL_SPENT
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_pet_parents_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - client_id
+          - customer_id
+          - last_visit_date
+          - loyalty_tier
+          - marketing_consent
+          - signup_source
+          - total_spent
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_pet_parents_result
+  description: update from LEARN_PQL.PUBLIC.PET_PARENTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_pet_parents!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_pet_parents_result
+    inputTypeName: update_learn_pql_public_pet_parents_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.PET_PARENTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_pet_parents_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_pet_parents
+  outputType: update_learn_pql_public_pet_parents_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_pet_parents_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_pet_parents_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.PET_PARENTS
+  graphql:
+    rootFieldName: update_learn_pql_public_pet_parents
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.PET_PARENTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_pet_parents
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,133 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_old_kennel_data_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+  fields:
+    - name: amt_paid
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.AMT_PAID
+    - name: dog_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.DOG_NAME
+    - name: misc_notes
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.MISC_NOTES
+    - name: owner_info
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.OWNER_INFO
+    - name: rec_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.REC_ID
+    - name: stay_dates
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.OLD_KENNEL_DATA.STAY_DATES
+  graphql:
+    typeName: learn_pql_public_old_kennel_data_set_input
+    inputTypeName: learn_pql_public_old_kennel_data_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.OLD_KENNEL_DATA_set_input
+      fieldMapping:
+        amt_paid:
+          column:
+            name: AMT_PAID
+        dog_name:
+          column:
+            name: DOG_NAME
+        misc_notes:
+          column:
+            name: MISC_NOTES
+        owner_info:
+          column:
+            name: OWNER_INFO
+        rec_id:
+          column:
+            name: REC_ID
+        stay_dates:
+          column:
+            name: STAY_DATES
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_old_kennel_data_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amt_paid
+          - dog_name
+          - misc_notes
+          - owner_info
+          - rec_id
+          - stay_dates
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_old_kennel_data_result
+  description: update from LEARN_PQL.PUBLIC.OLD_KENNEL_DATA result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_old_kennel_data!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_old_kennel_data_result
+    inputTypeName: update_learn_pql_public_old_kennel_data_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.OLD_KENNEL_DATA_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_old_kennel_data_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_old_kennel_data
+  outputType: update_learn_pql_public_old_kennel_data_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_old_kennel_data_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_old_kennel_data_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+  graphql:
+    rootFieldName: update_learn_pql_public_old_kennel_data
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.OLD_KENNEL_DATA
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_old_kennel_data
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,158 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.STAFF
+  fields:
+    - name: email
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.STAFF.EMAIL
+    - name: first_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.STAFF.FIRST_NAME
+    - name: hire_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.STAFF.HIRE_DATE
+    - name: hourly_rate
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.STAFF.HOURLY_RATE
+    - name: job_title
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.STAFF.JOB_TITLE
+    - name: last_name
+      type: string!
+      description: New value for LEARN_PQL.PUBLIC.STAFF.LAST_NAME
+    - name: phone
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.STAFF.PHONE
+    - name: primary_location_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.STAFF.PRIMARY_LOCATION_ID
+    - name: staff_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.STAFF.STAFF_ID
+    - name: status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.STAFF.STATUS
+  graphql:
+    typeName: learn_pql_public_staff_insert_input
+    inputTypeName: learn_pql_public_staff_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF_insert_input
+      fieldMapping:
+        email:
+          column:
+            name: EMAIL
+        first_name:
+          column:
+            name: FIRST_NAME
+        hire_date:
+          column:
+            name: HIRE_DATE
+        hourly_rate:
+          column:
+            name: HOURLY_RATE
+        job_title:
+          column:
+            name: JOB_TITLE
+        last_name:
+          column:
+            name: LAST_NAME
+        phone:
+          column:
+            name: PHONE
+        primary_location_id:
+          column:
+            name: PRIMARY_LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - email
+          - first_name
+          - hire_date
+          - hourly_rate
+          - job_title
+          - last_name
+          - phone
+          - primary_location_id
+          - staff_id
+          - status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_staff_result
+  description: insert from LEARN_PQL.PUBLIC.STAFF result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_staff!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_staff_result
+    inputTypeName: insert_learn_pql_public_staff_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.STAFF_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_staff_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_staff
+  outputType: insert_learn_pql_public_staff_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_staff_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.STAFF
+  graphql:
+    rootFieldName: insert_learn_pql_public_staff
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.STAFF
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_staff
+  permissions:
+    - role: admin
+      allowExecution: true
+

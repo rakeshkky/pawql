@@ -1,0 +1,196 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: timestamp_ntz_set_input
+  description: Wrapper for setting scalar TIMESTAMP_NTZ
+  fields:
+    - name: value
+      type: timestamp
+      description: New value for scalar TIMESTAMP_NTZ
+  graphql:
+    typeName: timestamp_ntz_set_input
+    inputTypeName: timestamp_ntz_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: TIMESTAMP_NTZ_set_input
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: timestamp_ntz_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_appointments_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.APPOINTMENTS
+  fields:
+    - name: appointment_datetime
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.APPOINTMENT_DATETIME
+    - name: appointment_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.APPOINTMENT_ID
+    - name: created_date
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.CREATED_DATE
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.CUSTOMER_ID
+    - name: dog_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.DOG_ID
+    - name: duration_minutes
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.DURATION_MINUTES
+    - name: location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.LOCATION_ID
+    - name: notes
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.NOTES
+    - name: service_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.SERVICE_ID
+    - name: staff_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.STAFF_ID
+    - name: status
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.APPOINTMENTS.STATUS
+  graphql:
+    typeName: learn_pql_public_appointments_set_input
+    inputTypeName: learn_pql_public_appointments_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.APPOINTMENTS_set_input
+      fieldMapping:
+        appointment_datetime:
+          column:
+            name: APPOINTMENT_DATETIME
+        appointment_id:
+          column:
+            name: APPOINTMENT_ID
+        created_date:
+          column:
+            name: CREATED_DATE
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        dog_id:
+          column:
+            name: DOG_ID
+        duration_minutes:
+          column:
+            name: DURATION_MINUTES
+        location_id:
+          column:
+            name: LOCATION_ID
+        notes:
+          column:
+            name: NOTES
+        service_id:
+          column:
+            name: SERVICE_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_appointments_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - appointment_datetime
+          - appointment_id
+          - created_date
+          - customer_id
+          - dog_id
+          - duration_minutes
+          - location_id
+          - notes
+          - service_id
+          - staff_id
+          - status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_appointments_result
+  description: update from LEARN_PQL.PUBLIC.APPOINTMENTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_appointments!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_appointments_result
+    inputTypeName: update_learn_pql_public_appointments_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.APPOINTMENTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_appointments_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_appointments
+  outputType: update_learn_pql_public_appointments_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_appointments_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_appointments_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.APPOINTMENTS
+  graphql:
+    rootFieldName: update_learn_pql_public_appointments
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.APPOINTMENTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_appointments
+  permissions:
+    - role: admin
+      allowExecution: true
+

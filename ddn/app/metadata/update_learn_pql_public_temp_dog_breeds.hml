@@ -1,0 +1,161 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: int_8_set_input
+  description: Wrapper for setting scalar INT_8
+  fields:
+    - name: value
+      type: int_8
+      description: New value for scalar INT_8
+  graphql:
+    typeName: int_8_set_input
+    inputTypeName: int_8_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: INT_8_set_input
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: int_8_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - value
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_temp_dog_breeds_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS
+  fields:
+    - name: breed
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.BREED
+    - name: energy_level
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.ENERGY_LEVEL
+    - name: grooming_score
+      type: int_8_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.GROOMING_SCORE
+    - name: incident_risk
+      type: int_8_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.INCIDENT_RISK
+    - name: size_category
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.SIZE_CATEGORY
+    - name: temperament
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS.TEMPERAMENT
+  graphql:
+    typeName: learn_pql_public_temp_dog_breeds_set_input
+    inputTypeName: learn_pql_public_temp_dog_breeds_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS_set_input
+      fieldMapping:
+        breed:
+          column:
+            name: BREED
+        energy_level:
+          column:
+            name: ENERGY_LEVEL
+        grooming_score:
+          column:
+            name: GROOMING_SCORE
+        incident_risk:
+          column:
+            name: INCIDENT_RISK
+        size_category:
+          column:
+            name: SIZE_CATEGORY
+        temperament:
+          column:
+            name: TEMPERAMENT
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_temp_dog_breeds_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - breed
+          - energy_level
+          - grooming_score
+          - incident_risk
+          - size_category
+          - temperament
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_temp_dog_breeds_result
+  description: update from LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_temp_dog_breeds!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_temp_dog_breeds_result
+    inputTypeName: update_learn_pql_public_temp_dog_breeds_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_temp_dog_breeds_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_temp_dog_breeds
+  outputType: update_learn_pql_public_temp_dog_breeds_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_temp_dog_breeds_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_temp_dog_breeds_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS
+  graphql:
+    rootFieldName: update_learn_pql_public_temp_dog_breeds
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.TEMP_DOG_BREEDS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_temp_dog_breeds
+  permissions:
+    - role: admin
+      allowExecution: true
+

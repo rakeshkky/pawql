@@ -1,0 +1,137 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_pet_parents_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.PET_PARENTS
+  fields:
+    - name: client_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.CLIENT_ID
+    - name: customer_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.CUSTOMER_ID
+    - name: last_visit_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.LAST_VISIT_DATE
+    - name: loyalty_tier
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.LOYALTY_TIER
+    - name: marketing_consent
+      type: boolean
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.MARKETING_CONSENT
+    - name: signup_source
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.SIGNUP_SOURCE
+    - name: total_spent
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.PET_PARENTS.TOTAL_SPENT
+  graphql:
+    typeName: learn_pql_public_pet_parents_insert_input
+    inputTypeName: learn_pql_public_pet_parents_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PET_PARENTS_insert_input
+      fieldMapping:
+        client_id:
+          column:
+            name: CLIENT_ID
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        last_visit_date:
+          column:
+            name: LAST_VISIT_DATE
+        loyalty_tier:
+          column:
+            name: LOYALTY_TIER
+        marketing_consent:
+          column:
+            name: MARKETING_CONSENT
+        signup_source:
+          column:
+            name: SIGNUP_SOURCE
+        total_spent:
+          column:
+            name: TOTAL_SPENT
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_pet_parents_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - client_id
+          - customer_id
+          - last_visit_date
+          - loyalty_tier
+          - marketing_consent
+          - signup_source
+          - total_spent
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_pet_parents_result
+  description: insert from LEARN_PQL.PUBLIC.PET_PARENTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_pet_parents!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_pet_parents_result
+    inputTypeName: insert_learn_pql_public_pet_parents_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.PET_PARENTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_pet_parents_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_pet_parents
+  outputType: insert_learn_pql_public_pet_parents_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_pet_parents_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.PET_PARENTS
+  graphql:
+    rootFieldName: insert_learn_pql_public_pet_parents
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.PET_PARENTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_pet_parents
+  permissions:
+    - role: admin
+      allowExecution: true
+

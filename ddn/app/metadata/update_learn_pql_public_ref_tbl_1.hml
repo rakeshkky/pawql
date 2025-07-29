@@ -1,0 +1,119 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_ref_tbl_1_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.REF_TBL_1
+  fields:
+    - name: active_ind
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.REF_TBL_1.ACTIVE_IND
+    - name: category
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.REF_TBL_1.CATEGORY
+    - name: code
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.REF_TBL_1.CODE
+    - name: description
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.REF_TBL_1.DESCRIPTION
+  graphql:
+    typeName: learn_pql_public_ref_tbl_1_set_input
+    inputTypeName: learn_pql_public_ref_tbl_1_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.REF_TBL_1_set_input
+      fieldMapping:
+        active_ind:
+          column:
+            name: ACTIVE_IND
+        category:
+          column:
+            name: CATEGORY
+        code:
+          column:
+            name: CODE
+        description:
+          column:
+            name: DESCRIPTION
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_ref_tbl_1_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - active_ind
+          - category
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_ref_tbl_1_result
+  description: update from LEARN_PQL.PUBLIC.REF_TBL_1 result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_ref_tbl_1!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_ref_tbl_1_result
+    inputTypeName: update_learn_pql_public_ref_tbl_1_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.REF_TBL_1_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_ref_tbl_1_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_ref_tbl_1
+  outputType: update_learn_pql_public_ref_tbl_1_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_ref_tbl_1_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_ref_tbl_1_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.REF_TBL_1
+  graphql:
+    rootFieldName: update_learn_pql_public_ref_tbl_1
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.REF_TBL_1
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_ref_tbl_1
+  permissions:
+    - role: admin
+      allowExecution: true
+

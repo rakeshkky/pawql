@@ -1,0 +1,217 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_memberships
+  description: "Object type for LEARN_PQL.PUBLIC.MEMBERSHIPS. Description: null"
+  fields:
+    - name: auto_renew
+      type: boolean
+    - name: customer_id
+      type: biginteger!
+    - name: end_date
+      type: date
+    - name: location_id
+      type: biginteger
+    - name: membership_id
+      type: biginteger!
+    - name: membership_type
+      type: string
+    - name: monthly_fee
+      type: bigdecimal
+    - name: start_date
+      type: date
+    - name: status
+      type: string
+  graphql:
+    typeName: learn_pql_public_memberships
+    inputTypeName: learn_pql_public_memberships_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.MEMBERSHIPS
+      fieldMapping:
+        auto_renew:
+          column:
+            name: AUTO_RENEW
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        end_date:
+          column:
+            name: END_DATE
+        location_id:
+          column:
+            name: LOCATION_ID
+        membership_id:
+          column:
+            name: MEMBERSHIP_ID
+        membership_type:
+          column:
+            name: MEMBERSHIP_TYPE
+        monthly_fee:
+          column:
+            name: MONTHLY_FEE
+        start_date:
+          column:
+            name: START_DATE
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_memberships
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - auto_renew
+          - customer_id
+          - end_date
+          - location_id
+          - membership_id
+          - membership_type
+          - monthly_fee
+          - start_date
+          - status
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_memberships_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_memberships
+      comparableFields:
+        - fieldName: auto_renew
+          booleanExpressionType: boolean_bool_exp
+        - fieldName: customer_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: end_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: membership_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: membership_type
+          booleanExpressionType: text_bool_exp
+        - fieldName: monthly_fee
+          booleanExpressionType: bigdecimal_bool_exp
+        - fieldName: start_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: status
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_memberships_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_memberships_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_memberships
+      aggregatableFields:
+        - fieldName: auto_renew
+          aggregateExpression: boolean_agg_exp
+        - fieldName: customer_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: end_date
+          aggregateExpression: date_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: membership_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: membership_type
+          aggregateExpression: text_agg_exp
+        - fieldName: monthly_fee
+          aggregateExpression: bigdecimal_agg_exp
+        - fieldName: start_date
+          aggregateExpression: date_agg_exp
+        - fieldName: status
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_memberships_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_memberships_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_memberships
+      orderableFields:
+        - fieldName: auto_renew
+          orderByExpression: boolean_order_by_exp
+        - fieldName: customer_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: end_date
+          orderByExpression: date_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: membership_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: membership_type
+          orderByExpression: string_order_by_exp
+        - fieldName: monthly_fee
+          orderByExpression: bigdecimal_order_by_exp
+        - fieldName: start_date
+          orderByExpression: date_order_by_exp
+        - fieldName: status
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_memberships_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_memberships
+  objectType: learn_pql_public_memberships
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.MEMBERSHIPS
+  filterExpressionType: learn_pql_public_memberships_bool_exp
+  aggregateExpression: learn_pql_public_memberships_agg_exp
+  orderByExpression: learn_pql_public_memberships_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_memberships
+      subscription:
+        rootField: learn_pql_public_memberships
+    selectUniques:
+      - queryRootField: learn_pql_public_memberships_by_membership_id
+        uniqueIdentifier:
+          - membership_id
+        subscription:
+          rootField: learn_pql_public_memberships_by_membership_id
+    filterInputTypeName: learn_pql_public_memberships_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_memberships_aggregate
+      subscription:
+        rootField: learn_pql_public_memberships_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_memberships
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

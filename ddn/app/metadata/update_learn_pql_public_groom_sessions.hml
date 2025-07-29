@@ -1,0 +1,175 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.GROOM_SESSIONS
+  fields:
+    - name: after_photo_url
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.AFTER_PHOTO_URL
+    - name: appt_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.APPT_ID
+    - name: before_photo_url
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.BEFORE_PHOTO_URL
+    - name: customer_rating
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.CUSTOMER_RATING
+    - name: dog_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.DOG_ID
+    - name: end_time
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.END_TIME
+    - name: groomer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.GROOMER_ID
+    - name: grooming_notes
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.GROOMING_NOTES
+    - name: service_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SERVICE_TYPE
+    - name: session_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SESSION_DATE
+    - name: session_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.SESSION_ID
+    - name: start_time
+      type: timestamp_ntz_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.GROOM_SESSIONS.START_TIME
+  graphql:
+    typeName: learn_pql_public_groom_sessions_set_input
+    inputTypeName: learn_pql_public_groom_sessions_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.GROOM_SESSIONS_set_input
+      fieldMapping:
+        after_photo_url:
+          column:
+            name: AFTER_PHOTO_URL
+        appt_id:
+          column:
+            name: APPT_ID
+        before_photo_url:
+          column:
+            name: BEFORE_PHOTO_URL
+        customer_rating:
+          column:
+            name: CUSTOMER_RATING
+        dog_id:
+          column:
+            name: DOG_ID
+        end_time:
+          column:
+            name: END_TIME
+        groomer_id:
+          column:
+            name: GROOMER_ID
+        grooming_notes:
+          column:
+            name: GROOMING_NOTES
+        service_type:
+          column:
+            name: SERVICE_TYPE
+        session_date:
+          column:
+            name: SESSION_DATE
+        session_id:
+          column:
+            name: SESSION_ID
+        start_time:
+          column:
+            name: START_TIME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_groom_sessions_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - after_photo_url
+          - appt_id
+          - before_photo_url
+          - customer_rating
+          - dog_id
+          - end_time
+          - groomer_id
+          - grooming_notes
+          - service_type
+          - session_date
+          - session_id
+          - start_time
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_groom_sessions_result
+  description: update from LEARN_PQL.PUBLIC.GROOM_SESSIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_groom_sessions!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_groom_sessions_result
+    inputTypeName: update_learn_pql_public_groom_sessions_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.GROOM_SESSIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_groom_sessions_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_groom_sessions
+  outputType: update_learn_pql_public_groom_sessions_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_groom_sessions_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_groom_sessions_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.GROOM_SESSIONS
+  graphql:
+    rootFieldName: update_learn_pql_public_groom_sessions
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.GROOM_SESSIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_groom_sessions
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,147 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_payments_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.PAYMENTS
+  fields:
+    - name: amount
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.AMOUNT
+    - name: appointment_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.APPOINTMENT_ID
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.CUSTOMER_ID
+    - name: payment_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.PAYMENT_DATE
+    - name: payment_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.PAYMENT_ID
+    - name: payment_method
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.PAYMENT_METHOD
+    - name: status
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.STATUS
+    - name: transaction_id
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAYMENTS.TRANSACTION_ID
+  graphql:
+    typeName: learn_pql_public_payments_set_input
+    inputTypeName: learn_pql_public_payments_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PAYMENTS_set_input
+      fieldMapping:
+        amount:
+          column:
+            name: AMOUNT
+        appointment_id:
+          column:
+            name: APPOINTMENT_ID
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        payment_date:
+          column:
+            name: PAYMENT_DATE
+        payment_id:
+          column:
+            name: PAYMENT_ID
+        payment_method:
+          column:
+            name: PAYMENT_METHOD
+        status:
+          column:
+            name: STATUS
+        transaction_id:
+          column:
+            name: TRANSACTION_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_payments_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount
+          - appointment_id
+          - customer_id
+          - payment_date
+          - payment_id
+          - payment_method
+          - status
+          - transaction_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_payments_result
+  description: update from LEARN_PQL.PUBLIC.PAYMENTS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_payments!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_payments_result
+    inputTypeName: update_learn_pql_public_payments_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.PAYMENTS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_payments_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_payments
+  outputType: update_learn_pql_public_payments_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_payments_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_payments_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.PAYMENTS
+  graphql:
+    rootFieldName: update_learn_pql_public_payments
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.PAYMENTS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_payments
+  permissions:
+    - role: admin
+      allowExecution: true
+

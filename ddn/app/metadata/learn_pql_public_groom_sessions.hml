@@ -1,0 +1,253 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions
+  description: "Object type for LEARN_PQL.PUBLIC.GROOM_SESSIONS. Description: null"
+  fields:
+    - name: after_photo_url
+      type: string
+    - name: appt_id
+      type: biginteger
+    - name: before_photo_url
+      type: string
+    - name: customer_rating
+      type: biginteger
+    - name: dog_id
+      type: biginteger!
+    - name: end_time
+      type: timestamp
+    - name: groomer_id
+      type: biginteger!
+    - name: grooming_notes
+      type: string
+    - name: service_type
+      type: string
+    - name: session_date
+      type: date
+    - name: session_id
+      type: biginteger!
+    - name: start_time
+      type: timestamp
+  graphql:
+    typeName: learn_pql_public_groom_sessions
+    inputTypeName: learn_pql_public_groom_sessions_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.GROOM_SESSIONS
+      fieldMapping:
+        after_photo_url:
+          column:
+            name: AFTER_PHOTO_URL
+        appt_id:
+          column:
+            name: APPT_ID
+        before_photo_url:
+          column:
+            name: BEFORE_PHOTO_URL
+        customer_rating:
+          column:
+            name: CUSTOMER_RATING
+        dog_id:
+          column:
+            name: DOG_ID
+        end_time:
+          column:
+            name: END_TIME
+        groomer_id:
+          column:
+            name: GROOMER_ID
+        grooming_notes:
+          column:
+            name: GROOMING_NOTES
+        service_type:
+          column:
+            name: SERVICE_TYPE
+        session_date:
+          column:
+            name: SESSION_DATE
+        session_id:
+          column:
+            name: SESSION_ID
+        start_time:
+          column:
+            name: START_TIME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_groom_sessions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - after_photo_url
+          - appt_id
+          - before_photo_url
+          - customer_rating
+          - dog_id
+          - end_time
+          - groomer_id
+          - grooming_notes
+          - service_type
+          - session_date
+          - session_id
+          - start_time
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_groom_sessions
+      comparableFields:
+        - fieldName: after_photo_url
+          booleanExpressionType: text_bool_exp
+        - fieldName: appt_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: before_photo_url
+          booleanExpressionType: text_bool_exp
+        - fieldName: customer_rating
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: end_time
+          booleanExpressionType: timestamp_ntz_bool_exp
+        - fieldName: groomer_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: grooming_notes
+          booleanExpressionType: text_bool_exp
+        - fieldName: service_type
+          booleanExpressionType: text_bool_exp
+        - fieldName: session_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: session_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: start_time
+          booleanExpressionType: timestamp_ntz_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_groom_sessions_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_groom_sessions
+      aggregatableFields:
+        - fieldName: after_photo_url
+          aggregateExpression: text_agg_exp
+        - fieldName: appt_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: before_photo_url
+          aggregateExpression: text_agg_exp
+        - fieldName: customer_rating
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: end_time
+          aggregateExpression: timestamp_ntz_agg_exp
+        - fieldName: groomer_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: grooming_notes
+          aggregateExpression: text_agg_exp
+        - fieldName: service_type
+          aggregateExpression: text_agg_exp
+        - fieldName: session_date
+          aggregateExpression: date_agg_exp
+        - fieldName: session_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: start_time
+          aggregateExpression: timestamp_ntz_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_groom_sessions_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_groom_sessions_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_groom_sessions
+      orderableFields:
+        - fieldName: after_photo_url
+          orderByExpression: string_order_by_exp
+        - fieldName: appt_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: before_photo_url
+          orderByExpression: string_order_by_exp
+        - fieldName: customer_rating
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: end_time
+          orderByExpression: timestamp_order_by_exp
+        - fieldName: groomer_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: grooming_notes
+          orderByExpression: string_order_by_exp
+        - fieldName: service_type
+          orderByExpression: string_order_by_exp
+        - fieldName: session_date
+          orderByExpression: date_order_by_exp
+        - fieldName: session_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: start_time
+          orderByExpression: timestamp_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_groom_sessions_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_groom_sessions
+  objectType: learn_pql_public_groom_sessions
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.GROOM_SESSIONS
+  filterExpressionType: learn_pql_public_groom_sessions_bool_exp
+  aggregateExpression: learn_pql_public_groom_sessions_agg_exp
+  orderByExpression: learn_pql_public_groom_sessions_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_groom_sessions
+      subscription:
+        rootField: learn_pql_public_groom_sessions
+    selectUniques:
+      - queryRootField: learn_pql_public_groom_sessions_by_session_id
+        uniqueIdentifier:
+          - session_id
+        subscription:
+          rootField: learn_pql_public_groom_sessions_by_session_id
+    filterInputTypeName: learn_pql_public_groom_sessions_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_groom_sessions_aggregate
+      subscription:
+        rootField: learn_pql_public_groom_sessions_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_groom_sessions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

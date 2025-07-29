@@ -1,0 +1,193 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_dog_vaccinations
+  description: "Object type for LEARN_PQL.PUBLIC.DOG_VACCINATIONS. Description: null"
+  fields:
+    - name: certificate_number
+      type: string
+    - name: dog_id
+      type: biginteger!
+    - name: expiration_date
+      type: date
+    - name: vacc_id
+      type: biginteger!
+    - name: vaccination_date
+      type: date
+    - name: vaccine_type
+      type: string
+    - name: vet_clinic
+      type: string
+  graphql:
+    typeName: learn_pql_public_dog_vaccinations
+    inputTypeName: learn_pql_public_dog_vaccinations_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+      fieldMapping:
+        certificate_number:
+          column:
+            name: CERTIFICATE_NUMBER
+        dog_id:
+          column:
+            name: DOG_ID
+        expiration_date:
+          column:
+            name: EXPIRATION_DATE
+        vacc_id:
+          column:
+            name: VACC_ID
+        vaccination_date:
+          column:
+            name: VACCINATION_DATE
+        vaccine_type:
+          column:
+            name: VACCINE_TYPE
+        vet_clinic:
+          column:
+            name: VET_CLINIC
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_dog_vaccinations
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - certificate_number
+          - dog_id
+          - expiration_date
+          - vacc_id
+          - vaccination_date
+          - vaccine_type
+          - vet_clinic
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_dog_vaccinations_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_dog_vaccinations
+      comparableFields:
+        - fieldName: certificate_number
+          booleanExpressionType: text_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: expiration_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: vacc_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: vaccination_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: vaccine_type
+          booleanExpressionType: text_bool_exp
+        - fieldName: vet_clinic
+          booleanExpressionType: text_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_dog_vaccinations_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_dog_vaccinations_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_dog_vaccinations
+      aggregatableFields:
+        - fieldName: certificate_number
+          aggregateExpression: text_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: expiration_date
+          aggregateExpression: date_agg_exp
+        - fieldName: vacc_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: vaccination_date
+          aggregateExpression: date_agg_exp
+        - fieldName: vaccine_type
+          aggregateExpression: text_agg_exp
+        - fieldName: vet_clinic
+          aggregateExpression: text_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_dog_vaccinations_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_dog_vaccinations_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_dog_vaccinations
+      orderableFields:
+        - fieldName: certificate_number
+          orderByExpression: string_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: expiration_date
+          orderByExpression: date_order_by_exp
+        - fieldName: vacc_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: vaccination_date
+          orderByExpression: date_order_by_exp
+        - fieldName: vaccine_type
+          orderByExpression: string_order_by_exp
+        - fieldName: vet_clinic
+          orderByExpression: string_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_dog_vaccinations_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_dog_vaccinations
+  objectType: learn_pql_public_dog_vaccinations
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+  filterExpressionType: learn_pql_public_dog_vaccinations_bool_exp
+  aggregateExpression: learn_pql_public_dog_vaccinations_agg_exp
+  orderByExpression: learn_pql_public_dog_vaccinations_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_dog_vaccinations
+      subscription:
+        rootField: learn_pql_public_dog_vaccinations
+    selectUniques:
+      - queryRootField: learn_pql_public_dog_vaccinations_by_vacc_id
+        uniqueIdentifier:
+          - vacc_id
+        subscription:
+          rootField: learn_pql_public_dog_vaccinations_by_vacc_id
+    filterInputTypeName: learn_pql_public_dog_vaccinations_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_dog_vaccinations_aggregate
+      subscription:
+        rootField: learn_pql_public_dog_vaccinations_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_dog_vaccinations
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

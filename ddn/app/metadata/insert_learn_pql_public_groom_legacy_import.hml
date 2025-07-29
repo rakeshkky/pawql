@@ -1,0 +1,137 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_groom_legacy_import_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT
+  fields:
+    - name: cost
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.COST
+    - name: dog_ref
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.DOG_REF
+    - name: groomer_nm
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.GROOMER_NM
+    - name: id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.ID
+    - name: migrated_flag
+      type: boolean
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.MIGRATED_FLAG
+    - name: notes
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.NOTES
+    - name: svc_dt
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT.SVC_DT
+  graphql:
+    typeName: learn_pql_public_groom_legacy_import_insert_input
+    inputTypeName: learn_pql_public_groom_legacy_import_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT_insert_input
+      fieldMapping:
+        cost:
+          column:
+            name: COST
+        dog_ref:
+          column:
+            name: DOG_REF
+        groomer_nm:
+          column:
+            name: GROOMER_NM
+        id:
+          column:
+            name: ID
+        migrated_flag:
+          column:
+            name: MIGRATED_FLAG
+        notes:
+          column:
+            name: NOTES
+        svc_dt:
+          column:
+            name: SVC_DT
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_groom_legacy_import_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cost
+          - dog_ref
+          - groomer_nm
+          - id
+          - migrated_flag
+          - notes
+          - svc_dt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_groom_legacy_import_result
+  description: insert from LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_groom_legacy_import!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_groom_legacy_import_result
+    inputTypeName: insert_learn_pql_public_groom_legacy_import_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_groom_legacy_import_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_groom_legacy_import
+  outputType: insert_learn_pql_public_groom_legacy_import_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_groom_legacy_import_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT
+  graphql:
+    rootFieldName: insert_learn_pql_public_groom_legacy_import
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_groom_legacy_import
+  permissions:
+    - role: admin
+      allowExecution: true
+

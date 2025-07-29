@@ -1,0 +1,116 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_ref_tbl_1_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.REF_TBL_1
+  fields:
+    - name: active_ind
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.REF_TBL_1.ACTIVE_IND
+    - name: category
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.REF_TBL_1.CATEGORY
+    - name: code
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.REF_TBL_1.CODE
+    - name: description
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.REF_TBL_1.DESCRIPTION
+  graphql:
+    typeName: learn_pql_public_ref_tbl_1_insert_input
+    inputTypeName: learn_pql_public_ref_tbl_1_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.REF_TBL_1_insert_input
+      fieldMapping:
+        active_ind:
+          column:
+            name: ACTIVE_IND
+        category:
+          column:
+            name: CATEGORY
+        code:
+          column:
+            name: CODE
+        description:
+          column:
+            name: DESCRIPTION
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_ref_tbl_1_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - active_ind
+          - category
+          - code
+          - description
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_ref_tbl_1_result
+  description: insert from LEARN_PQL.PUBLIC.REF_TBL_1 result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_ref_tbl_1!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_ref_tbl_1_result
+    inputTypeName: insert_learn_pql_public_ref_tbl_1_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.REF_TBL_1_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_ref_tbl_1_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_ref_tbl_1
+  outputType: insert_learn_pql_public_ref_tbl_1_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_ref_tbl_1_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.REF_TBL_1
+  graphql:
+    rootFieldName: insert_learn_pql_public_ref_tbl_1
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.REF_TBL_1
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_ref_tbl_1
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,151 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_canine_data_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.CANINE_DATA
+  fields:
+    - name: aggression_level
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.AGGRESSION_LEVEL
+    - name: dog_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.DOG_ID
+    - name: energy_level
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.ENERGY_LEVEL
+    - name: grooming_frequency_weeks
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.GROOMING_FREQUENCY_WEEKS
+    - name: last_grooming_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.LAST_GROOMING_DATE
+    - name: pet_key
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.PET_KEY
+    - name: socialization_score
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.SOCIALIZATION_SCORE
+    - name: vaccination_status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.VACCINATION_STATUS
+    - name: vet_clinic_name
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.CANINE_DATA.VET_CLINIC_NAME
+  graphql:
+    typeName: learn_pql_public_canine_data_insert_input
+    inputTypeName: learn_pql_public_canine_data_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.CANINE_DATA_insert_input
+      fieldMapping:
+        aggression_level:
+          column:
+            name: AGGRESSION_LEVEL
+        dog_id:
+          column:
+            name: DOG_ID
+        energy_level:
+          column:
+            name: ENERGY_LEVEL
+        grooming_frequency_weeks:
+          column:
+            name: GROOMING_FREQUENCY_WEEKS
+        last_grooming_date:
+          column:
+            name: LAST_GROOMING_DATE
+        pet_key:
+          column:
+            name: PET_KEY
+        socialization_score:
+          column:
+            name: SOCIALIZATION_SCORE
+        vaccination_status:
+          column:
+            name: VACCINATION_STATUS
+        vet_clinic_name:
+          column:
+            name: VET_CLINIC_NAME
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_canine_data_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - aggression_level
+          - dog_id
+          - energy_level
+          - grooming_frequency_weeks
+          - last_grooming_date
+          - pet_key
+          - socialization_score
+          - vaccination_status
+          - vet_clinic_name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_canine_data_result
+  description: insert from LEARN_PQL.PUBLIC.CANINE_DATA result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_canine_data!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_canine_data_result
+    inputTypeName: insert_learn_pql_public_canine_data_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.CANINE_DATA_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_canine_data_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_canine_data
+  outputType: insert_learn_pql_public_canine_data_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_canine_data_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.CANINE_DATA
+  graphql:
+    rootFieldName: insert_learn_pql_public_canine_data
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.CANINE_DATA
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_canine_data
+  permissions:
+    - role: admin
+      allowExecution: true
+

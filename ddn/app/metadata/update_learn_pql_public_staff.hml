@@ -1,0 +1,161 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.STAFF
+  fields:
+    - name: email
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.EMAIL
+    - name: first_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.FIRST_NAME
+    - name: hire_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.HIRE_DATE
+    - name: hourly_rate
+      type: bigdecimal_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.HOURLY_RATE
+    - name: job_title
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.JOB_TITLE
+    - name: last_name
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.LAST_NAME
+    - name: phone
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.PHONE
+    - name: primary_location_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.PRIMARY_LOCATION_ID
+    - name: staff_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.STAFF_ID
+    - name: status
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.STAFF.STATUS
+  graphql:
+    typeName: learn_pql_public_staff_set_input
+    inputTypeName: learn_pql_public_staff_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF_set_input
+      fieldMapping:
+        email:
+          column:
+            name: EMAIL
+        first_name:
+          column:
+            name: FIRST_NAME
+        hire_date:
+          column:
+            name: HIRE_DATE
+        hourly_rate:
+          column:
+            name: HOURLY_RATE
+        job_title:
+          column:
+            name: JOB_TITLE
+        last_name:
+          column:
+            name: LAST_NAME
+        phone:
+          column:
+            name: PHONE
+        primary_location_id:
+          column:
+            name: PRIMARY_LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        status:
+          column:
+            name: STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - email
+          - first_name
+          - hire_date
+          - hourly_rate
+          - job_title
+          - last_name
+          - phone
+          - primary_location_id
+          - staff_id
+          - status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_staff_result
+  description: update from LEARN_PQL.PUBLIC.STAFF result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_staff!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_staff_result
+    inputTypeName: update_learn_pql_public_staff_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.STAFF_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_staff_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_staff
+  outputType: update_learn_pql_public_staff_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_staff_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_staff_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.STAFF
+  graphql:
+    rootFieldName: update_learn_pql_public_staff
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.STAFF
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_staff
+  permissions:
+    - role: admin
+      allowExecution: true
+

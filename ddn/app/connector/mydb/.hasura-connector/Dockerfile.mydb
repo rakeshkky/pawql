@@ -1,0 +1,2 @@
+FROM ghcr.io/hasura/ndc-snowflake-jdbc:v1.2.12
+COPY ./ /etc/connector

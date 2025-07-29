@@ -1,0 +1,188 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_groom_legacy_import
+  description: "Object type for LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT. Description: null"
+  fields:
+    - name: cost
+      type: bigdecimal
+    - name: dog_ref
+      type: string
+    - name: groomer_nm
+      type: string
+    - name: id
+      type: biginteger
+    - name: migrated_flag
+      type: boolean
+    - name: notes
+      type: string
+    - name: svc_dt
+      type: date
+  graphql:
+    typeName: learn_pql_public_groom_legacy_import
+    inputTypeName: learn_pql_public_groom_legacy_import_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT
+      fieldMapping:
+        cost:
+          column:
+            name: COST
+        dog_ref:
+          column:
+            name: DOG_REF
+        groomer_nm:
+          column:
+            name: GROOMER_NM
+        id:
+          column:
+            name: ID
+        migrated_flag:
+          column:
+            name: MIGRATED_FLAG
+        notes:
+          column:
+            name: NOTES
+        svc_dt:
+          column:
+            name: SVC_DT
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_groom_legacy_import
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cost
+          - dog_ref
+          - groomer_nm
+          - id
+          - migrated_flag
+          - notes
+          - svc_dt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_groom_legacy_import_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_groom_legacy_import
+      comparableFields:
+        - fieldName: cost
+          booleanExpressionType: bigdecimal_bool_exp
+        - fieldName: dog_ref
+          booleanExpressionType: text_bool_exp
+        - fieldName: groomer_nm
+          booleanExpressionType: text_bool_exp
+        - fieldName: id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: migrated_flag
+          booleanExpressionType: boolean_bool_exp
+        - fieldName: notes
+          booleanExpressionType: text_bool_exp
+        - fieldName: svc_dt
+          booleanExpressionType: date_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_groom_legacy_import_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_groom_legacy_import_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_groom_legacy_import
+      aggregatableFields:
+        - fieldName: cost
+          aggregateExpression: bigdecimal_agg_exp
+        - fieldName: dog_ref
+          aggregateExpression: text_agg_exp
+        - fieldName: groomer_nm
+          aggregateExpression: text_agg_exp
+        - fieldName: id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: migrated_flag
+          aggregateExpression: boolean_agg_exp
+        - fieldName: notes
+          aggregateExpression: text_agg_exp
+        - fieldName: svc_dt
+          aggregateExpression: date_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_groom_legacy_import_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_groom_legacy_import_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_groom_legacy_import
+      orderableFields:
+        - fieldName: cost
+          orderByExpression: bigdecimal_order_by_exp
+        - fieldName: dog_ref
+          orderByExpression: string_order_by_exp
+        - fieldName: groomer_nm
+          orderByExpression: string_order_by_exp
+        - fieldName: id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: migrated_flag
+          orderByExpression: boolean_order_by_exp
+        - fieldName: notes
+          orderByExpression: string_order_by_exp
+        - fieldName: svc_dt
+          orderByExpression: date_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_groom_legacy_import_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_groom_legacy_import
+  objectType: learn_pql_public_groom_legacy_import
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.GROOM_LEGACY_IMPORT
+  filterExpressionType: learn_pql_public_groom_legacy_import_bool_exp
+  aggregateExpression: learn_pql_public_groom_legacy_import_agg_exp
+  orderByExpression: learn_pql_public_groom_legacy_import_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_groom_legacy_import
+      subscription:
+        rootField: learn_pql_public_groom_legacy_import
+    selectUniques: []
+    filterInputTypeName: learn_pql_public_groom_legacy_import_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_groom_legacy_import_aggregate
+      subscription:
+        rootField: learn_pql_public_groom_legacy_import_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_groom_legacy_import
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,140 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_pay_methods_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.PAY_METHODS
+  fields:
+    - name: card_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.CARD_TYPE
+    - name: customer_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.CUSTOMER_ID
+    - name: exp_month
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.EXP_MONTH
+    - name: exp_year
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.EXP_YEAR
+    - name: is_default
+      type: boolean_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.IS_DEFAULT
+    - name: last_four_digits
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.LAST_FOUR_DIGITS
+    - name: pm_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.PAY_METHODS.PM_ID
+  graphql:
+    typeName: learn_pql_public_pay_methods_set_input
+    inputTypeName: learn_pql_public_pay_methods_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.PAY_METHODS_set_input
+      fieldMapping:
+        card_type:
+          column:
+            name: CARD_TYPE
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        exp_month:
+          column:
+            name: EXP_MONTH
+        exp_year:
+          column:
+            name: EXP_YEAR
+        is_default:
+          column:
+            name: IS_DEFAULT
+        last_four_digits:
+          column:
+            name: LAST_FOUR_DIGITS
+        pm_id:
+          column:
+            name: PM_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_pay_methods_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - card_type
+          - customer_id
+          - exp_month
+          - exp_year
+          - is_default
+          - last_four_digits
+          - pm_id
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_pay_methods_result
+  description: update from LEARN_PQL.PUBLIC.PAY_METHODS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_pay_methods!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_pay_methods_result
+    inputTypeName: update_learn_pql_public_pay_methods_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.PAY_METHODS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_pay_methods_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_pay_methods
+  outputType: update_learn_pql_public_pay_methods_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_pay_methods_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_pay_methods_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.PAY_METHODS
+  graphql:
+    rootFieldName: update_learn_pql_public_pay_methods
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.PAY_METHODS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_pay_methods
+  permissions:
+    - role: admin
+      allowExecution: true
+

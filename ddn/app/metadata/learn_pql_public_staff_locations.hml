@@ -1,0 +1,158 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_staff_locations
+  description: "Object type for LEARN_PQL.PUBLIC.STAFF_LOCATIONS. Description: null"
+  fields:
+    - name: end_date
+      type: date
+    - name: location_id
+      type: biginteger!
+    - name: staff_id
+      type: biginteger!
+    - name: start_date
+      type: date
+  graphql:
+    typeName: learn_pql_public_staff_locations
+    inputTypeName: learn_pql_public_staff_locations_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+      fieldMapping:
+        end_date:
+          column:
+            name: END_DATE
+        location_id:
+          column:
+            name: LOCATION_ID
+        staff_id:
+          column:
+            name: STAFF_ID
+        start_date:
+          column:
+            name: START_DATE
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_staff_locations
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - end_date
+          - location_id
+          - staff_id
+          - start_date
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_staff_locations_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_staff_locations
+      comparableFields:
+        - fieldName: end_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: staff_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: start_date
+          booleanExpressionType: date_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_staff_locations_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_staff_locations_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_staff_locations
+      aggregatableFields:
+        - fieldName: end_date
+          aggregateExpression: date_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: staff_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: start_date
+          aggregateExpression: date_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_staff_locations_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_staff_locations_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_staff_locations
+      orderableFields:
+        - fieldName: end_date
+          orderByExpression: date_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: staff_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: start_date
+          orderByExpression: date_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_staff_locations_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_staff_locations
+  objectType: learn_pql_public_staff_locations
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.STAFF_LOCATIONS
+  filterExpressionType: learn_pql_public_staff_locations_bool_exp
+  aggregateExpression: learn_pql_public_staff_locations_agg_exp
+  orderByExpression: learn_pql_public_staff_locations_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_staff_locations
+      subscription:
+        rootField: learn_pql_public_staff_locations
+    selectUniques:
+      - queryRootField: learn_pql_public_staff_locations_by_primary_key
+        uniqueIdentifier:
+          - staff_id
+          - location_id
+        subscription:
+          rootField: learn_pql_public_staff_locations_by_primary_key
+    filterInputTypeName: learn_pql_public_staff_locations_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_staff_locations_aggregate
+      subscription:
+        rootField: learn_pql_public_staff_locations_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_staff_locations
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

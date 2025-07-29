@@ -1,0 +1,141 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_dog_vaccinations_set_input
+  description: Input type for updating LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+  fields:
+    - name: certificate_number
+      type: text_set_input
+      description: New value wrapper for
+        LEARN_PQL.PUBLIC.DOG_VACCINATIONS.CERTIFICATE_NUMBER
+    - name: dog_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.DOG_ID
+    - name: expiration_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.EXPIRATION_DATE
+    - name: vacc_id
+      type: biginteger_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.VACC_ID
+    - name: vaccination_date
+      type: date_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.VACCINATION_DATE
+    - name: vaccine_type
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.VACCINE_TYPE
+    - name: vet_clinic
+      type: text_set_input
+      description: New value wrapper for LEARN_PQL.PUBLIC.DOG_VACCINATIONS.VET_CLINIC
+  graphql:
+    typeName: learn_pql_public_dog_vaccinations_set_input
+    inputTypeName: learn_pql_public_dog_vaccinations_set_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.DOG_VACCINATIONS_set_input
+      fieldMapping:
+        certificate_number:
+          column:
+            name: CERTIFICATE_NUMBER
+        dog_id:
+          column:
+            name: DOG_ID
+        expiration_date:
+          column:
+            name: EXPIRATION_DATE
+        vacc_id:
+          column:
+            name: VACC_ID
+        vaccination_date:
+          column:
+            name: VACCINATION_DATE
+        vaccine_type:
+          column:
+            name: VACCINE_TYPE
+        vet_clinic:
+          column:
+            name: VET_CLINIC
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_dog_vaccinations_set_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - certificate_number
+          - dog_id
+          - expiration_date
+          - vacc_id
+          - vaccination_date
+          - vaccine_type
+          - vet_clinic
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: update_learn_pql_public_dog_vaccinations_result
+  description: update from LEARN_PQL.PUBLIC.DOG_VACCINATIONS result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_dog_vaccinations!]!"
+      description: Objects that were affected by update
+  graphql:
+    typeName: update_learn_pql_public_dog_vaccinations_result
+    inputTypeName: update_learn_pql_public_dog_vaccinations_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: update_LEARN_PQL.PUBLIC.DOG_VACCINATIONS_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: update_learn_pql_public_dog_vaccinations_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: update_learn_pql_public_dog_vaccinations
+  outputType: update_learn_pql_public_dog_vaccinations_result!
+  arguments:
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+    - name: set
+      type: learn_pql_public_dog_vaccinations_set_input!
+      description: Values to set
+    - name: where
+      type: learn_pql_public_dog_vaccinations_bool_exp!
+      description: Filter for rows to update
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: update_LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+  graphql:
+    rootFieldName: update_learn_pql_public_dog_vaccinations
+    rootFieldKind: Mutation
+  description: Update LEARN_PQL.PUBLIC.DOG_VACCINATIONS
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: update_learn_pql_public_dog_vaccinations
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,151 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_billing_data_insert_input
+  description: Input type for inserting into LEARN_PQL.PUBLIC.BILLING_DATA
+  fields:
+    - name: amount_due
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.AMOUNT_DUE
+    - name: amount_paid
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.AMOUNT_PAID
+    - name: balance
+      type: bigdecimal
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.BALANCE
+    - name: billing_id
+      type: biginteger!
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.BILLING_ID
+    - name: customer_id
+      type: biginteger
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.CUSTOMER_ID
+    - name: due_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.DUE_DATE
+    - name: invoice_date
+      type: date
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.INVOICE_DATE
+    - name: invoice_number
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.INVOICE_NUMBER
+    - name: payment_status
+      type: string
+      description: New value for LEARN_PQL.PUBLIC.BILLING_DATA.PAYMENT_STATUS
+  graphql:
+    typeName: learn_pql_public_billing_data_insert_input
+    inputTypeName: learn_pql_public_billing_data_insert_input_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.BILLING_DATA_insert_input
+      fieldMapping:
+        amount_due:
+          column:
+            name: AMOUNT_DUE
+        amount_paid:
+          column:
+            name: AMOUNT_PAID
+        balance:
+          column:
+            name: BALANCE
+        billing_id:
+          column:
+            name: BILLING_ID
+        customer_id:
+          column:
+            name: CUSTOMER_ID
+        due_date:
+          column:
+            name: DUE_DATE
+        invoice_date:
+          column:
+            name: INVOICE_DATE
+        invoice_number:
+          column:
+            name: INVOICE_NUMBER
+        payment_status:
+          column:
+            name: PAYMENT_STATUS
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_billing_data_insert_input
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - amount_due
+          - amount_paid
+          - balance
+          - billing_id
+          - customer_id
+          - due_date
+          - invoice_date
+          - invoice_number
+          - payment_status
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: insert_learn_pql_public_billing_data_result
+  description: insert from LEARN_PQL.PUBLIC.BILLING_DATA result
+  fields:
+    - name: affected_rows
+      type: int_32!
+      description: Number of affected rows
+    - name: returning
+      type: "[learn_pql_public_billing_data!]!"
+      description: Objects that were affected by insert
+  graphql:
+    typeName: insert_learn_pql_public_billing_data_result
+    inputTypeName: insert_learn_pql_public_billing_data_result_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: insert_LEARN_PQL.PUBLIC.BILLING_DATA_result
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: insert_learn_pql_public_billing_data_result
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affected_rows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: insert_learn_pql_public_billing_data
+  outputType: insert_learn_pql_public_billing_data_result!
+  arguments:
+    - name: objects
+      type: "[learn_pql_public_billing_data_insert_input!]!"
+      description: Objects to insert
+    - name: returning
+      type: "[string!]"
+      description: Fields to return
+  source:
+    dataConnectorName: mydb
+    dataConnectorCommand:
+      procedure: insert_LEARN_PQL.PUBLIC.BILLING_DATA
+  graphql:
+    rootFieldName: insert_learn_pql_public_billing_data
+    rootFieldKind: Mutation
+  description: Insert into LEARN_PQL.PUBLIC.BILLING_DATA
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: insert_learn_pql_public_billing_data
+  permissions:
+    - role: admin
+      allowExecution: true
+

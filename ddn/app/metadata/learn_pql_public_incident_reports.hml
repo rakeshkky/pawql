@@ -1,0 +1,229 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: learn_pql_public_incident_reports
+  description: "Object type for LEARN_PQL.PUBLIC.INCIDENT_REPORTS. Description: null"
+  fields:
+    - name: description
+      type: string
+    - name: dog_id
+      type: biginteger
+    - name: incident_date
+      type: date
+    - name: incident_time
+      type: timestamp
+    - name: incident_type
+      type: string
+    - name: location_id
+      type: biginteger
+    - name: report_id
+      type: biginteger!
+    - name: resolved
+      type: boolean
+    - name: severity_level
+      type: biginteger
+    - name: staff_id
+      type: biginteger
+  graphql:
+    typeName: learn_pql_public_incident_reports
+    inputTypeName: learn_pql_public_incident_reports_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: mydb
+      dataConnectorObjectType: LEARN_PQL.PUBLIC.INCIDENT_REPORTS
+      fieldMapping:
+        description:
+          column:
+            name: DESCRIPTION
+        dog_id:
+          column:
+            name: DOG_ID
+        incident_date:
+          column:
+            name: INCIDENT_DATE
+        incident_time:
+          column:
+            name: INCIDENT_TIME
+        incident_type:
+          column:
+            name: INCIDENT_TYPE
+        location_id:
+          column:
+            name: LOCATION_ID
+        report_id:
+          column:
+            name: REPORT_ID
+        resolved:
+          column:
+            name: RESOLVED
+        severity_level:
+          column:
+            name: SEVERITY_LEVEL
+        staff_id:
+          column:
+            name: STAFF_ID
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: learn_pql_public_incident_reports
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - description
+          - dog_id
+          - incident_date
+          - incident_time
+          - incident_type
+          - location_id
+          - report_id
+          - resolved
+          - severity_level
+          - staff_id
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: learn_pql_public_incident_reports_bool_exp
+  operand:
+    object:
+      type: learn_pql_public_incident_reports
+      comparableFields:
+        - fieldName: description
+          booleanExpressionType: text_bool_exp
+        - fieldName: dog_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: incident_date
+          booleanExpressionType: date_bool_exp
+        - fieldName: incident_time
+          booleanExpressionType: time_bool_exp
+        - fieldName: incident_type
+          booleanExpressionType: text_bool_exp
+        - fieldName: location_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: report_id
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: resolved
+          booleanExpressionType: boolean_bool_exp
+        - fieldName: severity_level
+          booleanExpressionType: biginteger_bool_exp
+        - fieldName: staff_id
+          booleanExpressionType: biginteger_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: learn_pql_public_incident_reports_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: learn_pql_public_incident_reports_agg_exp
+  operand:
+    object:
+      aggregatedType: learn_pql_public_incident_reports
+      aggregatableFields:
+        - fieldName: description
+          aggregateExpression: text_agg_exp
+        - fieldName: dog_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: incident_date
+          aggregateExpression: date_agg_exp
+        - fieldName: incident_time
+          aggregateExpression: time_agg_exp
+        - fieldName: incident_type
+          aggregateExpression: text_agg_exp
+        - fieldName: location_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: report_id
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: resolved
+          aggregateExpression: boolean_agg_exp
+        - fieldName: severity_level
+          aggregateExpression: biginteger_agg_exp
+        - fieldName: staff_id
+          aggregateExpression: biginteger_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: learn_pql_public_incident_reports_agg_exp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: learn_pql_public_incident_reports_order_by_exp
+  operand:
+    object:
+      orderedType: learn_pql_public_incident_reports
+      orderableFields:
+        - fieldName: description
+          orderByExpression: string_order_by_exp
+        - fieldName: dog_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: incident_date
+          orderByExpression: date_order_by_exp
+        - fieldName: incident_time
+          orderByExpression: timestamp_order_by_exp
+        - fieldName: incident_type
+          orderByExpression: string_order_by_exp
+        - fieldName: location_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: report_id
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: resolved
+          orderByExpression: boolean_order_by_exp
+        - fieldName: severity_level
+          orderByExpression: biginteger_order_by_exp
+        - fieldName: staff_id
+          orderByExpression: biginteger_order_by_exp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: learn_pql_public_incident_reports_order_by_exp
+
+---
+kind: Model
+version: v2
+definition:
+  name: learn_pql_public_incident_reports
+  objectType: learn_pql_public_incident_reports
+  source:
+    dataConnectorName: mydb
+    collection: LEARN_PQL.PUBLIC.INCIDENT_REPORTS
+  filterExpressionType: learn_pql_public_incident_reports_bool_exp
+  aggregateExpression: learn_pql_public_incident_reports_agg_exp
+  orderByExpression: learn_pql_public_incident_reports_order_by_exp
+  graphql:
+    selectMany:
+      queryRootField: learn_pql_public_incident_reports
+      subscription:
+        rootField: learn_pql_public_incident_reports
+    selectUniques:
+      - queryRootField: learn_pql_public_incident_reports_by_report_id
+        uniqueIdentifier:
+          - report_id
+        subscription:
+          rootField: learn_pql_public_incident_reports_by_report_id
+    filterInputTypeName: learn_pql_public_incident_reports_filter_input
+    aggregate:
+      queryRootField: learn_pql_public_incident_reports_aggregate
+      subscription:
+        rootField: learn_pql_public_incident_reports_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: learn_pql_public_incident_reports
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
