@@ -1,0 +1,7 @@
+build_version: 771c7676fa
+description: "First run of PawQL evaluation, using default Hasura LLM provider"
+timezone: "America/Los_Angeles"
+eval_sets:
+  - easy_questions.yaml
+  - medium_questions.yaml
+  - hard_questions.yaml

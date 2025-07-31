@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pawql-evals"
+version = "0.1.0"
+description = "PawQL evaluation runner"
+authors = [
+    {name = "PawQL Team", email = "team@pawql.com"},
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "promptql-api-sdk>=0.2.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "anthropic>=0.34.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "pyright>=1.1.0",
+]
+
+[project.scripts]
+run-eval = "pawql_evals.runner:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pyright]
+include = ["pawql_evals"]
+exclude = ["**/__pycache__"]
+reportMissingImports = true
+reportMissingTypeStubs = false
+pythonVersion = "3.9"
+pythonPlatform = "Linux"
