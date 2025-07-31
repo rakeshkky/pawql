@@ -1,0 +1,39 @@
+eval_set_name: "Medium Questions - Multi-table joins with aggregation"
+description: "Queries involving multiple table joins with aggregation and grouping operations"
+difficulty: "medium"
+items:
+  - question: "Which five customers have spent the most in 2024, and what are their total amounts?"
+    expected_analysis: |
+      Join customers and payments tables, filter by year and payment status, aggregate by customer — returning 5 records (Coy, Alexandre, Harvey, Katherine, Dominic).
+
+      SQL Reference:
+      ```sql
+      SELECT
+          c.first_name,
+          c.last_name,
+          c.email,
+          SUM(p.amount) as total_spent
+      FROM customers c
+      JOIN payments p ON c.customer_id = p.customer_id
+      WHERE p.status = 'COMPLETED'
+          AND EXTRACT(YEAR FROM p.payment_date) = 2024
+      GROUP BY c.customer_id, c.first_name, c.last_name, c.email
+      ORDER BY total_spent DESC
+      LIMIT 5;
+      ```
+
+  - question: "What is the average appointment duration by service category, and how many appointments has each category had?"
+    expected_analysis: |
+      Join appointments and services tables, group by service category, calculate averages and counts — returning 5 records with logical groupings for services.
+
+      SQL Reference:
+      ```sql
+      SELECT
+          s.service_category,
+          AVG(a.duration_minutes) as avg_duration_minutes,
+          COUNT(1) as appointment_count
+      FROM appointments a
+      JOIN app.learn_pql_public_services s ON a.service_id = s.service_id
+      GROUP BY s.service_category
+      ORDER BY appointment_count DESC;
+      ```

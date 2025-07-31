@@ -1,0 +1,26 @@
+eval_set_name: "Easy Questions - Single-table queries with basic filtering"
+description: "Basic queries involving single tables with simple filtering operations"
+difficulty: "easy"
+items:
+  - question: "How many active dogs are currently registered in the system?"
+    expected_analysis: |
+      Simple count with status filtering returning `31094` dogs.
+
+      SQL Reference:
+      ```sql
+      SELECT COUNT(1) as active_dog_count
+      FROM dogs
+      WHERE status = 'ACTIVE';
+      ```
+
+  - question: "What are the names and locations of all active PawQL locations?"
+    expected_analysis: |
+      Basic selection with filtering and 8 records returned.
+
+      SQL Reference:
+      ```sql
+      SELECT location_name, city, state
+      FROM locations
+      WHERE status = 'ACTIVE'
+      ORDER BY location_name;
+      ```

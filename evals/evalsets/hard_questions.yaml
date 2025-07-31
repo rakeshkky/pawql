@@ -1,0 +1,88 @@
+eval_set_name: "Hard Questions - Complex analysis with multiple joins and advanced logic"
+description: "Complex queries involving multiple joins, advanced logic, CTEs, and sophisticated analysis"
+difficulty: "hard"
+items:
+  - question: "Identify the top 3 dog breeds that have the highest incident rates at premium locations, and provide their incident rate per visit along with the total number of park visits for each breed."
+    expected_analysis: |
+      Multiple joins across dogs, breeds, incidents, park visits, and locations. Calculate rates, filter by premium locations, complex aggregation — should return 3 records reminding us that Chihuahuas are little dicks.
+
+      SQL Reference:
+      ```sql
+      WITH premium_locations AS (
+          SELECT location_id
+          FROM locations
+          WHERE square_footage >= 8000 AND status = 'ACTIVE'
+      ),
+      breed_visits AS (
+          SELECT
+              d.breed,
+              COUNT(1) as total_visits
+          FROM park_visits pv
+          JOIN dogs d ON pv.dog_id = d.dog_id
+          JOIN premium_locations pl ON pv.location_id = pl.location_id
+          WHERE d.breed IS NOT NULL
+          GROUP BY d.breed
+      ),
+      breed_incidents AS (
+          SELECT
+              d.breed,
+              COUNT(1) as total_incidents
+          FROM incident_reports ir
+          JOIN dogs d ON ir.dog_id = d.dog_id
+          JOIN premium_locations pl ON ir.location_id = pl.location_id
+          WHERE d.breed IS NOT NULL
+          GROUP BY d.breed
+      )
+      SELECT
+          bv.breed,
+          bv.total_visits,
+          COALESCE(bi.total_incidents, 0) as total_incidents,
+          ROUND((COALESCE(bi.total_incidents, 0) * 100.0 / bv.total_visits), 2) as incident_rate_per_100_visits
+      FROM breed_visits bv
+      LEFT JOIN breed_incidents bi ON bv.breed = bi.breed
+      ORDER BY incident_rate_per_100_visits DESC
+      LIMIT 3;
+      ```
+
+  - question: "What are our most profitable appointment time slots, and how much more revenue do we generate during peak hours compared to off-peak times?"
+    expected_analysis: |
+      "Golden hour" appointments (10 AM - 2 PM) should generate higher revenue per appointment compared to regular business hours.
+
+      SQL Reference:
+      ```sql
+      -- Golden Hour Effect Analysis
+      WITH hourly_revenue AS (
+        SELECT
+          EXTRACT(HOUR FROM CONVERT_TIMEZONE('UTC', 'America/Los_Angeles', a.appointment_datetime)) AS appointment_hour,
+          COUNT(*) AS appointment_count,
+          AVG(p.amount) AS avg_payment,
+          SUM(p.amount) AS total_revenue
+        FROM appointments a
+        JOIN payments p ON a.appointment_id = p.appointment_id
+        WHERE a.status = 'COMPLETED'
+        GROUP BY EXTRACT(HOUR FROM CONVERT_TIMEZONE('UTC', 'America/Los_Angeles', a.appointment_datetime))
+      ),
+      golden_vs_regular AS (
+        SELECT
+          CASE
+            WHEN appointment_hour BETWEEN 10 AND 13 THEN 'Golden Hour (10AM-2PM)'
+            ELSE 'Regular Hours'
+          END AS time_period,
+          AVG(avg_payment) AS avg_payment_per_appointment,
+          SUM(total_revenue) AS total_revenue,
+          SUM(appointment_count) AS total_appointments
+        FROM hourly_revenue
+        GROUP BY 1
+      )
+      SELECT
+        time_period,
+        total_appointments,
+        ROUND(avg_payment_per_appointment, 2) AS avg_payment,
+        ROUND(total_revenue, 2) AS total_revenue,
+        ROUND(
+          (avg_payment_per_appointment / LAG(avg_payment_per_appointment) OVER (ORDER BY time_period) - 1) * 100,
+          1
+        ) AS revenue_premium_pct
+      FROM golden_vs_regular
+      ORDER BY time_period;
+      ```
