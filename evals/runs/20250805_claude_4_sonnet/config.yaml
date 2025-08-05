@@ -1,0 +1,7 @@
+build_version: 3c8b49bb2e
+description: "Claude 4 Sonnet run"
+timezone: "America/Los_Angeles"
+eval_sets:
+  - easy_questions.yaml
+  - medium_questions.yaml
+  - hard_questions.yaml
