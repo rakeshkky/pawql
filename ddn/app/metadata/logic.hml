@@ -25,7 +25,7 @@ definition:
           description: Get latitude and longitude coordinates for a given zip code using pgeocode library.
           name: get_coordinates
           result_type:
-            name: Json
+            name: get_coordinates
             type: named
         - arguments:
             latitude:
@@ -74,6 +74,19 @@ definition:
                 type: named
             wind_speed_kph:
               description: Wind speed in kilometers per hour
+              type:
+                name: Float
+                type: named
+        get_coordinates:
+          description: null
+          fields:
+            latitude:
+              description: The latitude
+              type:
+                name: Float
+                type: named
+            longitude:
+              description: The longitude
               type:
                 name: Float
                 type: named

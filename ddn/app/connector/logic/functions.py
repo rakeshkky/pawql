@@ -30,11 +30,14 @@ from retry_requests import retry
 
 connector = FunctionConnector()
 
+class Coordinates(BaseModel):
+    latitude: float = Field(..., description="The latitude")
+    longitude: float = Field(..., description="The longitude")
 
 @connector.register_query
 def get_coordinates(
     zip_code: str = Field(..., description="The zip code to get coordinates for")
-) -> tuple[float, float]:
+) -> Coordinates:
     """Get latitude and longitude coordinates for a given zip code using pgeocode library."""
     try:
         # Initialize the geocoder for US zip codes
@@ -61,7 +64,7 @@ def get_coordinates(
                 details={"zip_code": zip_code, "error": "Coordinates not available"},
             )
 
-        return (latitude, longitude)
+        return Coordinates(latitude=latitude, longitude=longitude)
 
     except Exception as e:
         if isinstance(e, UnprocessableContent):

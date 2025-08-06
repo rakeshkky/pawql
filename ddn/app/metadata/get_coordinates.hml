@@ -3,7 +3,7 @@ kind: Command
 version: v1
 definition:
   name: get_coordinates
-  outputType: json!
+  outputType: get_coordinates!
   arguments:
     - name: zip_code
       type: String!
@@ -26,4 +26,35 @@ definition:
   permissions:
     - role: admin
       allowExecution: true
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: get_coordinates
+  fields:
+    - name: latitude
+      type: Float!
+      description: The latitude
+    - name: longitude
+      type: Float!
+      description: The longitude
+  graphql:
+    typeName: get_coordinates
+    inputTypeName: get_coordinates_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: logic
+      dataConnectorObjectType: get_coordinates
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: get_coordinates
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
 
