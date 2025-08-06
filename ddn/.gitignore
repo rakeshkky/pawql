@@ -1,3 +1,9 @@
 engine/build
 /.env
 /.env.*
+
+# Python virtual environments
+venv/
+.venv/
+env/
+.env/
