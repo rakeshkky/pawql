@@ -17,299 +17,73 @@ definition:
       collections: []
       functions:
         - arguments:
-            name:
-              description: null
+            zip_code:
+              description: The zip code to get coordinates for
               type:
                 name: String
                 type: named
-          description: null
-          name: hello
-          result_type:
-            name: String
-            type: named
-        - arguments:
-            name:
-              description: null
-              type:
-                type: nullable
-                underlying_type:
-                  name: String
-                  type: named
-          description: null
-          name: nullable_hello
-          result_type:
-            name: String
-            type: named
-        - arguments:
-            person:
-              description: null
-              type:
-                name: greet_person_person
-                type: named
-          description: null
-          name: greet_person
-          result_type:
-            name: String
-            type: named
-        - arguments:
-            input:
-              description: null
-              type:
-                name: complex_function_input
-                type: named
-          description: null
-          name: complex_function
-          result_type:
-            name: complex_function
-            type: named
-        - arguments:
-            name:
-              description: null
-              type:
-                name: String
-                type: named
-          description: null
-          name: with_tracing
-          result_type:
-            name: String
-            type: named
-        - arguments:
-            name:
-              description: null
-              type:
-                name: String
-                type: named
-          description: null
-          name: parallel_query
-          result_type:
-            name: String
-            type: named
-        - arguments: {}
-          description: null
-          name: error
+          description: Get latitude and longitude coordinates for a given zip code using pgeocode library.
+          name: get_coordinates
           result_type:
             name: Json
             type: named
         - arguments:
-            foo:
-              description: The optional input Foo
+            latitude:
+              description: The latitude to fetch weather for
               type:
-                type: nullable
-                underlying_type:
-                  name: annotations_foo
-                  type: named
-          description: Writing a doc-string like this will become the function/procedure description
-          name: annotations
+                name: Float
+                type: named
+            longitude:
+              description: The longitude to fetch weather for
+              type:
+                name: Float
+                type: named
+          description: Fetch current weather data for given coordinates
+          name: fetch_weather
           result_type:
-            type: nullable
-            underlying_type:
-              name: annotations
-              type: named
+            name: fetch_weather
+            type: named
       object_types:
-        annotations:
+        fetch_weather:
           description: null
           fields:
-            bar:
+            humidity:
               arguments: null
-              description: The bar field
-              type:
-                name: String
-                type: named
-            baz:
-              arguments: null
-              description: The baz field
-              type:
-                name: String
-                type: named
-        annotations_foo:
-          description: null
-          fields:
-            bar:
-              arguments: null
-              description: The bar field
-              type:
-                name: String
-                type: named
-            baz:
-              arguments: null
-              description: The baz field
-              type:
-                name: String
-                type: named
-        complex_function:
-          description: null
-          fields:
-            lists:
-              arguments: null
-              description: null
-              type:
-                element_type:
-                  element_type:
-                    name: Json
-                    type: named
-                  type: array
-                type: array
-            person:
-              arguments: null
-              description: null
-              type:
-                type: nullable
-                underlying_type:
-                  name: complex_function_person
-                  type: named
-            x:
-              arguments: null
-              description: null
-              type:
-                name: Int
-                type: named
-            "y":
-              arguments: null
-              description: null
+              description: Humidity in percentage
               type:
                 name: Float
                 type: named
-            z:
+            is_day:
               arguments: null
-              description: null
+              description: Whether it is day or not
               type:
                 name: Boolean
                 type: named
-        complex_function_input:
-          description: null
-          fields:
-            lists:
+            precipitation_mm:
               arguments: null
-              description: null
-              type:
-                element_type:
-                  element_type:
-                    name: Json
-                    type: named
-                  type: array
-                type: array
-            person:
-              arguments: null
-              description: null
-              type:
-                type: nullable
-                underlying_type:
-                  name: complex_function_input_person
-                  type: named
-            x:
-              arguments: null
-              description: null
-              type:
-                name: Int
-                type: named
-            "y":
-              arguments: null
-              description: null
+              description: Precipitation in millimeters
               type:
                 name: Float
                 type: named
-            z:
+            temperature_c:
               arguments: null
-              description: null
+              description: Temperature in Celsius
               type:
-                name: Boolean
+                name: Float
                 type: named
-        complex_function_input_person:
-          description: null
-          fields:
-            name:
+            wind_direction:
               arguments: null
-              description: null
+              description: Wind direction in degrees
               type:
-                name: String
+                name: Float
                 type: named
-            pets:
+            wind_speed_kph:
               arguments: null
-              description: null
+              description: Wind speed in kilometers per hour
               type:
-                type: nullable
-                underlying_type:
-                  element_type:
-                    name: complex_function_input_person_pets
-                    type: named
-                  type: array
-        complex_function_input_person_pets:
-          description: null
-          fields:
-            name:
-              arguments: null
-              description: null
-              type:
-                name: String
+                name: Float
                 type: named
-        complex_function_person:
-          description: null
-          fields:
-            name:
-              arguments: null
-              description: null
-              type:
-                name: String
-                type: named
-            pets:
-              arguments: null
-              description: null
-              type:
-                type: nullable
-                underlying_type:
-                  element_type:
-                    name: complex_function_person_pets
-                    type: named
-                  type: array
-        complex_function_person_pets:
-          description: null
-          fields:
-            name:
-              arguments: null
-              description: null
-              type:
-                name: String
-                type: named
-        greet_person_person:
-          description: null
-          fields:
-            name:
-              arguments: null
-              description: null
-              type:
-                name: String
-                type: named
-            pets:
-              arguments: null
-              description: null
-              type:
-                type: nullable
-                underlying_type:
-                  element_type:
-                    name: greet_person_person_pets
-                    type: named
-                  type: array
-        greet_person_person_pets:
-          description: null
-          fields:
-            name:
-              arguments: null
-              description: null
-              type:
-                name: String
-                type: named
-      procedures:
-        - arguments:
-            any_type_param:
-              description: null
-              type:
-                name: Json
-                type: named
-          description: null
-          name: some_mutation_function
-          result_type:
-            name: Json
-            type: named
+      procedures: []
       scalar_types:
         Boolean:
           aggregate_functions: {}

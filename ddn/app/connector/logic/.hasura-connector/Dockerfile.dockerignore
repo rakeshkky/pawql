@@ -1,3 +1,4 @@
 .hasura-connector/
 *.hml
 __pycache__
+venv/

@@ -1,0 +1,77 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: fetch_weather
+  fields:
+    - name: humidity
+      type: Float!
+      description: Humidity in percentage
+    - name: is_day
+      type: Boolean!
+      description: Whether it is day or not
+    - name: precipitation_mm
+      type: Float!
+      description: Precipitation in millimeters
+    - name: temperature_c
+      type: Float!
+      description: Temperature in Celsius
+    - name: wind_direction
+      type: Float!
+      description: Wind direction in degrees
+    - name: wind_speed_kph
+      type: Float!
+      description: Wind speed in kilometers per hour
+  graphql:
+    typeName: fetch_weather
+    inputTypeName: fetch_weather_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: logic
+      dataConnectorObjectType: fetch_weather
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: fetch_weather
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - humidity
+          - is_day
+          - precipitation_mm
+          - temperature_c
+          - wind_direction
+          - wind_speed_kph
+
+---
+kind: Command
+version: v1
+definition:
+  name: fetch_weather
+  outputType: fetch_weather!
+  arguments:
+    - name: latitude
+      type: Float!
+      description: The latitude to fetch weather for
+    - name: longitude
+      type: Float!
+      description: The longitude to fetch weather for
+  source:
+    dataConnectorName: logic
+    dataConnectorCommand:
+      function: fetch_weather
+  graphql:
+    rootFieldName: fetch_weather
+    rootFieldKind: Query
+  description: Fetch current weather data for given coordinates
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: fetch_weather
+  permissions:
+    - role: admin
+      allowExecution: true

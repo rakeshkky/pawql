@@ -1,0 +1,29 @@
+---
+kind: Command
+version: v1
+definition:
+  name: get_coordinates
+  outputType: json!
+  arguments:
+    - name: zip_code
+      type: String!
+      description: The zip code to get coordinates for
+  source:
+    dataConnectorName: logic
+    dataConnectorCommand:
+      function: get_coordinates
+  graphql:
+    rootFieldName: get_coordinates
+    rootFieldKind: Query
+  description: Get latitude and longitude coordinates for a given zip code using
+    pgeocode library.
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: get_coordinates
+  permissions:
+    - role: admin
+      allowExecution: true
+
