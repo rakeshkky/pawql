@@ -1,0 +1,13 @@
+services:
+  app_logic:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_LOGIC_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_LOGIC_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_LOGIC_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 6556:8080

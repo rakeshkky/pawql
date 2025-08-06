@@ -1,5 +1,6 @@
 include:
   - path: app/connector/mydb/compose.yaml
+  - path: app/connector/logic/compose.yaml
 services:
   engine:
     build:

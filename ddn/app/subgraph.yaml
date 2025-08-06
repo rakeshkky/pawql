@@ -8,6 +8,12 @@ definition:
   includePaths:
     - metadata
   envMapping:
+    APP_LOGIC_AUTHORIZATION_HEADER:
+      fromEnv: APP_LOGIC_AUTHORIZATION_HEADER
+    APP_LOGIC_READ_URL:
+      fromEnv: APP_LOGIC_READ_URL
+    APP_LOGIC_WRITE_URL:
+      fromEnv: APP_LOGIC_WRITE_URL
     APP_MYDB_AUTHORIZATION_HEADER:
       fromEnv: APP_MYDB_AUTHORIZATION_HEADER
     APP_MYDB_READ_URL:
@@ -17,3 +23,5 @@ definition:
   connectors:
     - path: connector/mydb/connector.yaml
       connectorLinkName: mydb
+    - path: connector/logic/connector.yaml
+      connectorLinkName: logic

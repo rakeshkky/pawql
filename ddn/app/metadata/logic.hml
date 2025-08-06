@@ -1,0 +1,356 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: logic
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_LOGIC_READ_URL
+      write:
+        valueFromEnv: APP_LOGIC_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_LOGIC_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      collections: []
+      functions:
+        - arguments:
+            name:
+              description: null
+              type:
+                name: String
+                type: named
+          description: null
+          name: hello
+          result_type:
+            name: String
+            type: named
+        - arguments:
+            name:
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+          description: null
+          name: nullable_hello
+          result_type:
+            name: String
+            type: named
+        - arguments:
+            person:
+              description: null
+              type:
+                name: greet_person_person
+                type: named
+          description: null
+          name: greet_person
+          result_type:
+            name: String
+            type: named
+        - arguments:
+            input:
+              description: null
+              type:
+                name: complex_function_input
+                type: named
+          description: null
+          name: complex_function
+          result_type:
+            name: complex_function
+            type: named
+        - arguments:
+            name:
+              description: null
+              type:
+                name: String
+                type: named
+          description: null
+          name: with_tracing
+          result_type:
+            name: String
+            type: named
+        - arguments:
+            name:
+              description: null
+              type:
+                name: String
+                type: named
+          description: null
+          name: parallel_query
+          result_type:
+            name: String
+            type: named
+        - arguments: {}
+          description: null
+          name: error
+          result_type:
+            name: Json
+            type: named
+        - arguments:
+            foo:
+              description: The optional input Foo
+              type:
+                type: nullable
+                underlying_type:
+                  name: annotations_foo
+                  type: named
+          description: Writing a doc-string like this will become the function/procedure description
+          name: annotations
+          result_type:
+            type: nullable
+            underlying_type:
+              name: annotations
+              type: named
+      object_types:
+        annotations:
+          description: null
+          fields:
+            bar:
+              arguments: null
+              description: The bar field
+              type:
+                name: String
+                type: named
+            baz:
+              arguments: null
+              description: The baz field
+              type:
+                name: String
+                type: named
+        annotations_foo:
+          description: null
+          fields:
+            bar:
+              arguments: null
+              description: The bar field
+              type:
+                name: String
+                type: named
+            baz:
+              arguments: null
+              description: The baz field
+              type:
+                name: String
+                type: named
+        complex_function:
+          description: null
+          fields:
+            lists:
+              arguments: null
+              description: null
+              type:
+                element_type:
+                  element_type:
+                    name: Json
+                    type: named
+                  type: array
+                type: array
+            person:
+              arguments: null
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  name: complex_function_person
+                  type: named
+            x:
+              arguments: null
+              description: null
+              type:
+                name: Int
+                type: named
+            "y":
+              arguments: null
+              description: null
+              type:
+                name: Float
+                type: named
+            z:
+              arguments: null
+              description: null
+              type:
+                name: Boolean
+                type: named
+        complex_function_input:
+          description: null
+          fields:
+            lists:
+              arguments: null
+              description: null
+              type:
+                element_type:
+                  element_type:
+                    name: Json
+                    type: named
+                  type: array
+                type: array
+            person:
+              arguments: null
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  name: complex_function_input_person
+                  type: named
+            x:
+              arguments: null
+              description: null
+              type:
+                name: Int
+                type: named
+            "y":
+              arguments: null
+              description: null
+              type:
+                name: Float
+                type: named
+            z:
+              arguments: null
+              description: null
+              type:
+                name: Boolean
+                type: named
+        complex_function_input_person:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+            pets:
+              arguments: null
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: complex_function_input_person_pets
+                    type: named
+                  type: array
+        complex_function_input_person_pets:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+        complex_function_person:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+            pets:
+              arguments: null
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: complex_function_person_pets
+                    type: named
+                  type: array
+        complex_function_person_pets:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+        greet_person_person:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+            pets:
+              arguments: null
+              description: null
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: greet_person_person_pets
+                    type: named
+                  type: array
+        greet_person_person_pets:
+          description: null
+          fields:
+            name:
+              arguments: null
+              description: null
+              type:
+                name: String
+                type: named
+      procedures:
+        - arguments:
+            any_type_param:
+              description: null
+              type:
+                name: Json
+                type: named
+          description: null
+          name: some_mutation_function
+          result_type:
+            name: Json
+            type: named
+      scalar_types:
+        Boolean:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: boolean
+        Float:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: float64
+        HeaderMap:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: json
+        Int:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: integer
+        Json:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: json
+        String:
+          aggregate_functions: {}
+          comparison_operators: {}
+          representation:
+            type: string
+    capabilities:
+      capabilities:
+        mutation:
+          explain: null
+          transactional: {}
+        query:
+          aggregates: {}
+          exists: null
+          explain: {}
+          nested_fields: null
+          variables: {}
+        relationships: null
+      version: 0.1.6
