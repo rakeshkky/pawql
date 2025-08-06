@@ -48,37 +48,31 @@ definition:
           description: null
           fields:
             humidity:
-              arguments: null
               description: Humidity in percentage
               type:
                 name: Float
                 type: named
             is_day:
-              arguments: null
               description: Whether it is day or not
               type:
                 name: Boolean
                 type: named
             precipitation_mm:
-              arguments: null
               description: Precipitation in millimeters
               type:
                 name: Float
                 type: named
             temperature_c:
-              arguments: null
               description: Temperature in Celsius
               type:
                 name: Float
                 type: named
             wind_direction:
-              arguments: null
               description: Wind direction in degrees
               type:
                 name: Float
                 type: named
             wind_speed_kph:
-              arguments: null
               description: Wind speed in kilometers per hour
               type:
                 name: Float
@@ -122,9 +116,7 @@ definition:
           transactional: {}
         query:
           aggregates: {}
-          exists: null
           explain: {}
-          nested_fields: null
           variables: {}
         relationships: null
       version: 0.1.6
