@@ -8,4 +8,4 @@ definition:
       valueFromEnv: ANTHROPIC_API_KEY
   featureFlags:
     enable_visualizations_v3: true
-    enable_automation_v2: true
+    enable_automations: true
